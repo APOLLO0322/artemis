@@ -1,0 +1,19 @@
+.slot {
+  position: relative;
+  width: 100%;
+  background: var(--color-neutral-200);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.label {
+  font-family: var(--font-body);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--color-neutral-600);
+  text-transform: uppercase;
+  padding: 0 var(--space-4);
+  text-align: center;
+}

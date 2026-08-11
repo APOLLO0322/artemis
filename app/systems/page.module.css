@@ -1,0 +1,172 @@
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  padding: calc(var(--space-6) * 1.2) 0 calc(var(--space-8) * 1.6);
+  display: grid;
+  grid-template-columns: 6fr 6fr;
+  gap: var(--space-6);
+  align-items: center;
+  border-top: 2px solid var(--color-text);
+  position: relative;
+}
+
+.heroMarker {
+  position: absolute;
+  top: calc(var(--space-6) * 1.6);
+  left: -10px;
+  width: 16px;
+  height: 16px;
+  background: var(--color-accent);
+}
+
+.heroKicker {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: var(--space-4) 0 var(--space-4);
+}
+
+.heroTitle {
+  font-size: clamp(38px, 5vw, 64px);
+  line-height: 1.05;
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.heroLead {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.9;
+  max-width: 38ch;
+  margin: var(--space-4) 0 0;
+  color: var(--color-neutral-700);
+}
+
+/* ---------- services ---------- */
+
+.services {
+  padding-bottom: calc(var(--space-8) * 1.3);
+}
+
+.kicker {
+  margin-bottom: var(--space-4);
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: calc(var(--space-6) * 1.3);
+}
+
+.serviceCard {
+  border: none;
+  padding: 0;
+}
+
+.serviceCardOffset {
+  margin-top: var(--space-4);
+}
+
+.serviceNum {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 1;
+  color: var(--color-accent-300);
+  margin: 0 0 var(--space-2);
+  font-feature-settings: "tnum" 1;
+}
+
+/* ---------- case studies ---------- */
+
+.caseStudies {
+  padding: calc(var(--space-8) * 1.6) 0;
+}
+
+.caseGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--space-6) * 1.3);
+}
+
+.caseNum {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--color-accent-300);
+  margin: 0 0 var(--space-3);
+  font-feature-settings: "tnum" 1;
+}
+
+.caseBody {
+  margin-top: var(--space-3);
+}
+
+/* ---------- credentials ---------- */
+
+.section {
+  padding: calc(var(--space-8) * 1.6) 0;
+}
+
+.tagRow {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+/* ---------- products ---------- */
+
+.productCard {
+  opacity: 0.85;
+}
+
+.productBadge {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+}
+
+/* ---------- cta ---------- */
+
+.cta {
+  text-align: center;
+}
+
+.ctaLead {
+  font-family: var(--font-body);
+  color: var(--color-neutral-700);
+  margin: 0 0 var(--space-4);
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 860px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: var(--space-6);
+  }
+
+  .heroMarker {
+    display: none;
+  }
+
+  .servicesGrid,
+  .caseGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .serviceCardOffset {
+    margin-top: 0;
+  }
+}

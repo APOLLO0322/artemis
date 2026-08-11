@@ -1,0 +1,22 @@
+.form {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 480px;
+}
+
+.success {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--color-accent-800);
+  background: var(--color-accent-100);
+  padding: var(--space-4);
+  max-width: 480px;
+}
+
+.error {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: #a5433a;
+  margin: 0;
+}
