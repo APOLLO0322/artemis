@@ -1,0 +1,316 @@
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+/* ---------- hero ---------- */
+
+.heroWrap {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  margin-top: var(--space-4);
+}
+
+.heroLabel {
+  position: absolute;
+  left: calc(var(--space-4) + 6px);
+  bottom: var(--space-6);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.18em;
+  color: var(--color-bg);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.heroSquare {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  width: 18px;
+  height: 18px;
+  background: var(--color-accent);
+}
+
+/* ---------- intro ---------- */
+
+.intro {
+  position: relative;
+  padding: calc(var(--space-6) * 1.2) 0 0;
+}
+
+.introHead {
+  border-top: 2px solid var(--color-text);
+  padding-top: var(--space-4);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.introHeadLabel,
+.introHeadYear {
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  font-size: 13px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.introHeadYear {
+  font-feature-settings: "tnum" 1;
+}
+
+.introBody {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: calc(var(--space-6) * 1.2);
+  gap: var(--space-6);
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.introText {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.9;
+  max-width: 40ch;
+  margin: 0;
+  color: var(--color-neutral-700);
+}
+
+.introArrow {
+  width: 64px;
+  height: 64px;
+  border: 2px solid var(--color-text);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+/* ---------- pillars ---------- */
+
+.pillars {
+  padding: calc(var(--space-8) * 1.6) 0 0;
+  position: relative;
+}
+
+.pillarsGrid {
+  border-top: 2px solid var(--color-text);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.pillar {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  position: relative;
+  padding: calc(var(--space-6) * 1.4) calc(var(--space-6) * 1.2) calc(var(--space-6) * 1.4) 0;
+  border-right: 2px solid var(--color-text);
+}
+
+.pillar:hover {
+  text-decoration: none;
+}
+
+.pillarDark {
+  padding: calc(var(--space-6) * 1.4) 0 calc(var(--space-6) * 1.4) calc(var(--space-6) * 1.2);
+  background: var(--color-text);
+  color: var(--color-bg);
+  border-right: none;
+}
+
+.pillarMarker {
+  width: 14px;
+  height: 14px;
+  background: var(--color-text);
+  position: absolute;
+  top: calc(var(--space-6) * 1.4);
+  left: 0;
+  transform: translateX(-8px);
+}
+
+.pillarNum {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent-700);
+  margin: 0 0 var(--space-3);
+}
+
+.pillarNumDark {
+  composes: pillarNum;
+  color: var(--color-accent-300);
+}
+
+.pillarTitle {
+  font-size: clamp(34px, 4.2vw, 52px);
+  line-height: 0.98;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.pillarDesc {
+  font-family: var(--font-body);
+  color: var(--color-neutral-700);
+  line-height: 1.8;
+  margin: var(--space-4) 0 0;
+  max-width: 30ch;
+}
+
+.pillarDescDark {
+  composes: pillarDesc;
+  color: var(--color-neutral-300);
+}
+
+/* ---------- recent works ---------- */
+
+.works {
+  padding: calc(var(--space-8) * 1.8) 0;
+}
+
+.worksKicker {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent-700);
+  margin: 0 0 var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.worksDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  display: inline-block;
+}
+
+.worksGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--space-6) * 1.6);
+}
+
+.workItem {
+  border-left: 2px solid var(--color-text);
+  padding-left: var(--space-4);
+}
+
+.workKind {
+  font-family: var(--font-body);
+  font-style: italic;
+  letter-spacing: 0.03em;
+  color: var(--color-accent-700);
+  font-size: 13px;
+  margin: 0 0 var(--space-3);
+}
+
+.workTitle {
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  font-size: 24px;
+}
+
+.workBody {
+  font-family: var(--font-body);
+  color: var(--color-neutral-700);
+  line-height: 1.8;
+  margin: var(--space-3) 0 0;
+}
+
+/* ---------- contact ---------- */
+
+.contact {
+  padding: calc(var(--space-8) * 2) 0;
+  border-top: 2px solid var(--color-text);
+}
+
+.contactKicker {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent-700);
+  margin: calc(var(--space-6) * 1.2) 0 var(--space-4);
+}
+
+.contactTitle {
+  font-size: clamp(32px, 4vw, 48px);
+  margin: 0 0 var(--space-3);
+}
+
+.contactLead {
+  font-family: var(--font-body);
+  color: var(--color-neutral-700);
+  max-width: 48ch;
+  margin: 0 0 var(--space-6);
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 860px) {
+  .pillarsGrid,
+  .worksGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .pillar {
+    border-right: none;
+    border-bottom: 2px solid var(--color-text);
+    padding: calc(var(--space-6) * 1.1) var(--space-2) calc(var(--space-6) * 1.1) 0;
+  }
+
+  .pillarDark {
+    padding: calc(var(--space-6) * 1.1) var(--space-2);
+    border-bottom: none;
+  }
+
+  .pillarMarker {
+    display: none;
+  }
+
+  .worksGrid {
+    gap: calc(var(--space-6) * 1.1);
+  }
+}
+
+@media (max-width: 560px) {
+  .heroLabel {
+    font-size: 12px;
+    bottom: var(--space-4);
+  }
+
+  .heroSquare {
+    width: 14px;
+    height: 14px;
+  }
+
+  .introArrow {
+    width: 48px;
+    height: 48px;
+    font-size: 18px;
+  }
+}

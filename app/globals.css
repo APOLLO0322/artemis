@@ -1,0 +1,281 @@
+:root {
+  --font-heading: var(--font-noto-sans-jp), "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
+  --font-body: var(--font-noto-sans-jp), "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
+
+  --color-bg: #f5f4f1;
+  --color-text: #1e1d1a;
+
+  --color-neutral-100: #f5f4f1;
+  --color-neutral-200: #e3e1dc;
+  --color-neutral-300: #d8d6d0;
+  --color-neutral-500: #9c9a92;
+  --color-neutral-600: #7a786f;
+  --color-neutral-700: #57554d;
+  --color-neutral-800: #3a382f;
+  --color-neutral-900: #1e1d1a;
+  --color-divider: #d8d6d0;
+
+  --color-accent: #6b7a4f;
+  --color-accent-100: #e7ebdf;
+  --color-accent-200: #d3dac4;
+  --color-accent-300: #b3c098;
+  --color-accent-500: #6b7a4f;
+  --color-accent-600: #5c6b42;
+  --color-accent-700: #4a5636;
+  --color-accent-800: #3a422a;
+  --color-accent-900: #2a3020;
+
+  /* space scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 20px;
+  --space-5: 28px;
+  --space-6: 40px;
+  --space-7: 56px;
+  --space-8: 72px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  text-wrap: pretty;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+p,
+figure {
+  margin: 0;
+}
+
+a {
+  color: var(--color-accent-700);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-accent-900);
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* ---------- shared decorative utilities ---------- */
+
+.dot::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  margin-right: var(--space-2);
+  vertical-align: middle;
+}
+
+.kuten {
+  color: var(--color-accent);
+}
+
+.kicker-i {
+  font-style: italic;
+  letter-spacing: 0.03em;
+}
+
+.rule-short {
+  width: 64px;
+  height: 1px;
+  border: 0;
+  background: var(--color-accent-300);
+  margin: 0 auto;
+}
+
+.blk {
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- nav ---------- */
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.navLink {
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-neutral-700);
+  white-space: nowrap;
+}
+
+.navLink:hover {
+  color: var(--color-accent-900);
+  text-decoration: none;
+}
+
+.navLinkActive {
+  color: var(--color-accent-700);
+}
+
+/* ---------- buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 15px 32px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 2px solid var(--color-text);
+  border-radius: 0;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn:hover {
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-700);
+  border-color: var(--color-accent-700);
+  color: var(--color-bg);
+}
+
+.btn-primary:disabled {
+  background: var(--color-neutral-500);
+  border-color: var(--color-neutral-500);
+  cursor: not-allowed;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* ---------- form fields ---------- */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.field label {
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--color-neutral-700);
+}
+
+.input {
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 13px var(--space-3);
+  background: var(--color-bg);
+  border: 1px solid var(--color-neutral-500);
+  border-radius: 0;
+  color: var(--color-text);
+  resize: vertical;
+}
+
+.input::placeholder {
+  color: var(--color-neutral-500);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-text);
+}
+
+/* ---------- cards ---------- */
+
+.card {
+  border: 1px solid var(--color-divider);
+  padding: var(--space-4);
+}
+
+.card-kicker {
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent-700);
+}
+
+.card-title {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+}
+
+.card-body {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--color-neutral-700);
+}
+
+.elev-sm {
+  box-shadow: 0 1px 2px rgba(30, 29, 26, 0.04), 0 6px 16px rgba(30, 29, 26, 0.05);
+}
+
+/* ---------- tags ---------- */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  padding: 7px 14px;
+  border-radius: 999px;
+}
+
+.tag-accent {
+  background: var(--color-accent-100);
+  color: var(--color-accent-800);
+}
+
+.tag-outline {
+  background: transparent;
+  color: var(--color-neutral-700);
+  border: 1px solid var(--color-neutral-500);
+}
+
+/* ---------- photo plate (black mat frame accent) ---------- */
+
+.plate {
+  padding: var(--space-2);
+  background: var(--color-bg);
+  border: 2px solid var(--color-text);
+}

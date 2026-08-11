@@ -1,0 +1,84 @@
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+.hero {
+  padding: calc(var(--space-6) * 1.2) 0 calc(var(--space-8) * 1.4);
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: var(--space-6);
+  align-items: center;
+  border-top: 2px solid var(--color-text);
+  position: relative;
+}
+
+.profileLabel {
+  position: absolute;
+  top: var(--space-4);
+  right: 0;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  color: var(--color-accent-700);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.kicker {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: var(--space-4) 0 var(--space-3);
+}
+
+.title {
+  font-size: clamp(32px, 4.4vw, 50px);
+  line-height: 1.2;
+  margin: 0;
+  text-wrap: balance;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.lead {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.75;
+  text-align: justify;
+  margin: var(--space-4) 0 0;
+  color: var(--color-neutral-700);
+}
+
+.story {
+  padding: calc(var(--space-8) * 1.4) 0;
+}
+
+.storyKicker {
+  margin-bottom: var(--space-4);
+}
+
+.storyBody {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.8;
+  text-align: justify;
+  max-width: 70ch;
+  color: var(--color-neutral-700);
+}
+
+@media (max-width: 860px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .profileLabel {
+    display: none;
+  }
+}
