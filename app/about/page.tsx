@@ -9,13 +9,6 @@ export const metadata = {
   description: "写真から始まり、システムに広がった。Artemisのプロフィール。",
 }
 
-const profile = [
-  { label: "出身", value: "埼玉県" },
-  { label: "学歴", value: "上智大学 心理学科 卒業" },
-  { label: "現在", value: "写真・映像制作／Notion導入・バックオフィス構築／Web制作" },
-  { label: "資格", value: "Notion Certified Admin" },
-]
-
 const links = [
   { label: "Instagram", href: "https://www.instagram.com/i.tomomi2734/" },
   { label: "Threads", href: "https://www.threads.com/@i.tomomi2734" },
@@ -45,20 +38,6 @@ export default function AboutPage() {
         <figure className="plate">
           <ImageSlot label="ポートレート" src={firstImage("about")} aspectRatio="4/5" />
         </figure>
-      </section>
-
-      <hr className="rule-short" />
-
-      <section className={styles.section}>
-        <div className={`card-kicker dot kicker-i ${styles.sectionKicker}`}>Profile</div>
-        <dl className={styles.profileList}>
-          {profile.map((item) => (
-            <div key={item.label} className={styles.profileRow}>
-              <dt className={styles.profileLabelCell}>{item.label}</dt>
-              <dd className={styles.profileValue}>{item.value}</dd>
-            </div>
-          ))}
-        </dl>
       </section>
 
       <hr className="rule-short" />

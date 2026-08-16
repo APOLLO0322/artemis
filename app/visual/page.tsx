@@ -43,23 +43,6 @@ export default function VisualPage() {
 
       <hr className={`rule-short ${styles.divider}`} />
 
-      <section className={styles.credits}>
-        <p className={styles.creditsKicker}>
-          <span className={styles.creditsDot} />
-          実績・制作クレジット
-        </p>
-        <div className={styles.creditsItem}>
-          <div className={styles.creditsTitle}>映像制作会社 ブランド撮影・ディレクション</div>
-          <p className={styles.creditsBody}>
-            撮影・映像ディレクションを担当。ブランドイメージの構築からアウトプットの色彩設計まで。
-          </p>
-          <div className={styles.creditsTags}>
-            <span className="tag tag-outline">Photography</span>
-            <span className="tag tag-outline">Direction</span>
-          </div>
-        </div>
-      </section>
-
       <section className={styles.cta}>
         <p className={styles.ctaLead}>撮影・映像制作のご依頼はこちらから</p>
         <Link href="/#contact" className="btn btn-primary">

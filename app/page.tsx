@@ -62,8 +62,8 @@ export default function HomePage() {
 
       <section id="contact" className={styles.contact}>
         <p className={styles.contactKicker}>Contact</p>
-        <h2 className={styles.contactTitle}>相談してみる</h2>
-        <p className={styles.contactLead}>撮影・映像制作、Notion導入・業務設計のご相談はこちらから。</p>
+        <h2 className={styles.contactTitle}>お問合せ</h2>
+        <p className={styles.contactLead}>ご相談はこちらから。</p>
         <ContactForm />
       </section>
 

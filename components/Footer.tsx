@@ -8,9 +8,6 @@ export function Footer({ variant = "full" }: { variant?: "full" | "minimal" }) {
   return (
     <footer className={styles.footer}>
       <span>© Artemis</span>
-      <a href="#">
-        note「感情には、色がある<span className="kuten">。</span>」
-      </a>
     </footer>
   )
 }

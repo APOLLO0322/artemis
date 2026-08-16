@@ -217,6 +217,18 @@ button {
   border-color: var(--color-text);
 }
 
+select.input {
+  appearance: none;
+  line-height: 1.5;
+  height: 50px;
+  background-image: linear-gradient(45deg, transparent 50%, var(--color-neutral-700) 50%),
+    linear-gradient(135deg, var(--color-neutral-700) 50%, transparent 50%);
+  background-position: calc(100% - 18px) center, calc(100% - 13px) center;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: var(--space-6);
+}
+
 /* ---------- cards ---------- */
 
 .card {
