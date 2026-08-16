@@ -60,25 +60,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className={styles.works}>
-        <p className={styles.worksKicker}>
-          <span className={styles.worksDot} />
-          直近の実績
-        </p>
-        <div className={styles.worksGrid}>
-          <div className={styles.workItem}>
-            <p className={styles.workKind}>Visual</p>
-            <div className={styles.workTitle}>APOLLO 撮影・制作クレジット</div>
-            <p className={styles.workBody}>APOLLO関連プロジェクトでの撮影・映像ディレクション。</p>
-          </div>
-          <div className={styles.workItem}>
-            <p className={styles.workKind}>Systems</p>
-            <div className={styles.workTitle}>フリーランス向け統合ダッシュボード</div>
-            <p className={styles.workBody}>Notionで案件・請求・実績を一元管理する運用基盤を構築。</p>
-          </div>
-        </div>
-      </section>
-
       <section id="contact" className={styles.contact}>
         <p className={styles.contactKicker}>Contact</p>
         <h2 className={styles.contactTitle}>相談してみる</h2>

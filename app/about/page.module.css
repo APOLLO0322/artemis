@@ -38,15 +38,6 @@
   margin: var(--space-4) 0 var(--space-3);
 }
 
-.title {
-  font-size: clamp(32px, 4.4vw, 50px);
-  line-height: 1.2;
-  margin: 0;
-  text-wrap: balance;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
-
 .lead {
   font-family: var(--font-body);
   font-size: 17px;
@@ -95,13 +86,25 @@
   color: var(--color-neutral-700);
 }
 
-.credo {
+.links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.link {
   font-family: var(--font-body);
   font-weight: 700;
-  font-size: clamp(20px, 2.6vw, 30px);
-  line-height: 1.9;
-  letter-spacing: -0.01em;
-  color: var(--color-text);
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  color: var(--color-accent-700);
+}
+
+.link:hover {
+  color: var(--color-accent-900);
 }
 
 @media (max-width: 860px) {

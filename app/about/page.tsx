@@ -12,10 +12,14 @@ export const metadata = {
 const profile = [
   { label: "出身", value: "埼玉県" },
   { label: "学歴", value: "上智大学 心理学科 卒業" },
-  { label: "経歴", value: "エンタメ業界で演劇プロデューサー → 愛媛へ移住 → 映像制作会社 共同代表 → 個人事業「Artemis」" },
   { label: "現在", value: "写真・映像制作／Notion導入・バックオフィス構築／Web制作" },
   { label: "資格", value: "Notion Certified Admin" },
-  { label: "好きなもの", value: "ダンス、パン、チョコ、クッキー、チーズ、さつまいも" },
+]
+
+const links = [
+  { label: "Instagram", href: "https://www.instagram.com/i.tomomi2734/" },
+  { label: "Threads", href: "https://www.threads.com/@i.tomomi2734" },
+  { label: "note", href: "https://note.com/artemis2734" },
 ]
 
 export default function AboutPage() {
@@ -26,13 +30,12 @@ export default function AboutPage() {
       <section className={styles.hero}>
         <p className={styles.profileLabel}>Profile</p>
         <div>
-          <p className={styles.kicker}>About</p>
-          <h1 className={styles.title}>写真から始まり、システムに広がった。</h1>
+          <h1 className={styles.kicker}>About</h1>
           <p className={styles.lead}>
-            埼玉県出身。上智大学心理学科を卒業後、エンタメ業界で演劇プロデューサーとして働く。舞台という、たくさんの人の手がひとつの本番に集まる現場で、つくることと、それを回すことの両方に向き合ってきた。
+            埼玉県出身。上智大学心理学科を卒業後、エンタメ業界で演劇プロデューサーとして働く。舞台という、たくさんの人の手がひとつの本番に集まる現場で、創ることと、それを円滑に進行することの両方に向き合ってきた。
           </p>
           <p className={styles.lead}>
-            その後、愛媛へ移住。パートナーとの共同代表で映像制作会社を立ち上げ、並行して個人事業「Artemis」を始める。カメラマンとして写真も映像も撮り、編集まで手がけている。
+            その後、愛媛へ移住。パートナーとの共同代表で映像制作会社を立ち上げる。現在は個人事業「Artemis」として写真と映像の撮影・編集まで手がけている。
           </p>
           <p className={styles.lead}>
             Notionを使った業務設計に取り組み始め、Notion Certified
@@ -61,14 +64,16 @@ export default function AboutPage() {
       <hr className="rule-short" />
 
       <section className={styles.section}>
-        <div className={`card-kicker dot kicker-i ${styles.sectionKicker}`}>大切にしていること</div>
-        <p className={styles.credo}>
-          自分の言葉を持つ<span className="kuten">。</span>
-          <br />
-          大切な人を支える力を持つ<span className="kuten">。</span>
-          <br />
-          できるまでやる<span className="kuten">。</span>
-        </p>
+        <div className={`card-kicker dot kicker-i ${styles.sectionKicker}`}>Links</div>
+        <ul className={styles.links}>
+          {links.map((link) => (
+            <li key={link.label}>
+              <a href={link.href} target="_blank" rel="noopener noreferrer" className={styles.link}>
+                {link.label} →
+              </a>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <hr className="rule-short" />
