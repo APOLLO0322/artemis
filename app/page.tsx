@@ -3,11 +3,11 @@ import { Nav } from "@/components/Nav"
 import { Footer } from "@/components/Footer"
 import { HeroSlideshow } from "@/components/HeroSlideshow"
 import { ContactForm } from "@/components/ContactForm"
-import { getHeroImages } from "@/lib/heroImages"
+import { listImages } from "@/lib/siteImages"
 import styles from "./page.module.css"
 
 export default function HomePage() {
-  const heroImages = getHeroImages()
+  const heroImages = listImages("hero")
 
   return (
     <div className={styles.container}>

@@ -2,6 +2,7 @@ import Link from "next/link"
 import { Nav } from "@/components/Nav"
 import { Footer } from "@/components/Footer"
 import { ImageSlot } from "@/components/ImageSlot"
+import { listImages } from "@/lib/siteImages"
 import styles from "./page.module.css"
 
 export const metadata = {
@@ -10,6 +11,8 @@ export const metadata = {
 }
 
 export default function VisualPage() {
+  const gallery = listImages("visual")
+
   return (
     <div className={styles.container}>
       <Nav />
@@ -28,28 +31,28 @@ export default function VisualPage() {
 
       <div className={styles.gallery}>
         <div className={styles.fullBleed}>
-          <ImageSlot label="撮影写真 1" height="min(82vh, 780px)" />
+          <ImageSlot label="撮影写真 1" src={gallery[0]} height="min(82vh, 780px)" priority />
         </div>
 
         <div className={styles.pairGrid}>
           <figure className="plate">
-            <ImageSlot label="撮影写真 2" aspectRatio="3/4" />
+            <ImageSlot label="撮影写真 2" src={gallery[1]} aspectRatio="3/4" />
           </figure>
           <figure className={styles.blackMat}>
-            <ImageSlot label="撮影写真 3" aspectRatio="3/4" />
+            <ImageSlot label="撮影写真 3" src={gallery[2]} aspectRatio="3/4" />
           </figure>
         </div>
 
         <div className={styles.fullBleed}>
-          <ImageSlot label="撮影写真 4" height="min(70vh, 640px)" />
+          <ImageSlot label="撮影写真 4" src={gallery[3]} height="min(70vh, 640px)" />
         </div>
 
         <div className={styles.pairGrid}>
           <figure className="plate">
-            <ImageSlot label="撮影写真 5" aspectRatio="4/5" />
+            <ImageSlot label="撮影写真 5" src={gallery[4]} aspectRatio="4/5" />
           </figure>
           <figure className={`plate ${styles.plateOffset}`}>
-            <ImageSlot label="撮影写真 6" aspectRatio="4/5" />
+            <ImageSlot label="撮影写真 6" src={gallery[5]} aspectRatio="4/5" />
           </figure>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import { Nav } from "@/components/Nav"
 import { Footer } from "@/components/Footer"
 import { ImageSlot } from "@/components/ImageSlot"
+import { firstImage } from "@/lib/siteImages"
 import styles from "./page.module.css"
 
 export const metadata = {
@@ -27,7 +28,7 @@ export default function AboutPage() {
           </p>
         </div>
         <figure className="plate">
-          <ImageSlot label="ポートレート" aspectRatio="4/5" />
+          <ImageSlot label="ポートレート" src={firstImage("about")} aspectRatio="4/5" />
         </figure>
       </section>
 

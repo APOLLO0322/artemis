@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Nav } from "@/components/Nav"
 import { Footer } from "@/components/Footer"
+import { CredentialBadge } from "@/components/CredentialBadge"
 import styles from "./page.module.css"
 
 export const metadata = {
@@ -72,9 +73,12 @@ export default function PartnerPage() {
 
       <section className={styles.section}>
         <div className={`card-kicker dot kicker-i ${styles.sectionKicker}`}>Credentials</div>
-        <div className={styles.tagRow}>
-          <span className="tag tag-accent">Notion Certified Admin</span>
-          <span className="tag tag-outline">巡回監査士補 取得予定</span>
+        <div className={styles.credentials}>
+          <CredentialBadge />
+          <div className={styles.tagRow}>
+            <span className="tag tag-accent">Notion Certified Admin</span>
+            <span className="tag tag-outline">巡回監査士補 取得予定</span>
+          </div>
         </div>
       </section>
 

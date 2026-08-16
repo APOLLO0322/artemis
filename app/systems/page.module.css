@@ -119,6 +119,13 @@
   padding: calc(var(--space-8) * 1.6) 0;
 }
 
+.credentials {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+}
+
 .tagRow {
   display: flex;
   gap: var(--space-3);

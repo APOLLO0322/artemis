@@ -2,6 +2,8 @@ import Link from "next/link"
 import { Nav } from "@/components/Nav"
 import { Footer } from "@/components/Footer"
 import { ImageSlot } from "@/components/ImageSlot"
+import { CredentialBadge } from "@/components/CredentialBadge"
+import { firstImage } from "@/lib/siteImages"
 import styles from "./page.module.css"
 
 export const metadata = {
@@ -38,7 +40,7 @@ const caseStudies = [
   },
   {
     num: "Case 02",
-    title: "APOLLO 納品ポータル（Next.js）",
+    title: "映像制作会社 納品ポータル",
     body: "分散していた納品データのやり取りを、Next.js製ポータルとNotion連携で一本化。確認負荷を軽減した。",
   },
   {
@@ -67,7 +69,7 @@ export default function SystemsPage() {
           </p>
         </div>
         <figure className="plate">
-          <ImageSlot label="Notionワークスペースのスクリーンショット" aspectRatio="4/3" />
+          <ImageSlot label="Notionワークスペースのスクリーンショット" src={firstImage("systems")} aspectRatio="4/3" />
         </figure>
       </section>
 
@@ -106,9 +108,12 @@ export default function SystemsPage() {
 
       <section className={styles.section}>
         <div className={`card-kicker dot kicker-i ${styles.kicker}`}>Credentials</div>
-        <div className={styles.tagRow}>
-          <span className="tag tag-accent">Notion Certified Admin</span>
-          <span className="tag tag-outline">巡回監査士補 取得予定</span>
+        <div className={styles.credentials}>
+          <CredentialBadge />
+          <div className={styles.tagRow}>
+            <span className="tag tag-accent">Notion Certified Admin</span>
+            <span className="tag tag-outline">巡回監査士補 取得予定</span>
+          </div>
         </div>
       </section>
 
