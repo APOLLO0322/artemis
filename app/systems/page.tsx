@@ -16,19 +16,16 @@ const services = [
     num: "01",
     title: "Notion導入設計",
     body: "業務フローの棚卸しから、DB設計・ワークスペース構築まで一括で設計。",
-    offset: false,
   },
   {
     num: "02",
     title: "会計自動化",
     body: "請求・領収書・入出金管理をNotion／外部API連携で自動化。",
-    offset: true,
   },
   {
     num: "03",
     title: "ワークフロー構築",
     body: "案件進行・タスク管理・クライアント対応までを一元化する運用基盤。",
-    offset: false,
   },
 ]
 
@@ -77,10 +74,7 @@ export default function SystemsPage() {
         <div className={`card-kicker dot kicker-i ${styles.kicker}`}>Services</div>
         <div className={styles.servicesGrid}>
           {services.map((service) => (
-            <div
-              key={service.num}
-              className={service.offset ? `${styles.serviceCard} ${styles.serviceCardOffset}` : styles.serviceCard}
-            >
+            <div key={service.num} className={styles.serviceCard}>
               <p className={styles.serviceNum}>{service.num}</p>
               <div className="card-title">{service.title}</div>
               <p className="card-body">{service.body}</p>

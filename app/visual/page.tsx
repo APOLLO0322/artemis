@@ -30,31 +30,15 @@ export default function VisualPage() {
       </section>
 
       <div className={styles.gallery}>
-        <div className={styles.fullBleed}>
-          <ImageSlot label="撮影写真 1" src={gallery[0]} height="min(82vh, 780px)" priority />
-        </div>
-
-        <div className={styles.pairGrid}>
-          <figure className="plate">
-            <ImageSlot label="撮影写真 2" src={gallery[1]} aspectRatio="3/4" />
-          </figure>
-          <figure className={styles.blackMat}>
-            <ImageSlot label="撮影写真 3" src={gallery[2]} aspectRatio="3/4" />
-          </figure>
-        </div>
-
-        <div className={styles.fullBleed}>
-          <ImageSlot label="撮影写真 4" src={gallery[3]} height="min(70vh, 640px)" />
-        </div>
-
-        <div className={styles.pairGrid}>
-          <figure className="plate">
-            <ImageSlot label="撮影写真 5" src={gallery[4]} aspectRatio="4/5" />
-          </figure>
-          <figure className={`plate ${styles.plateOffset}`}>
-            <ImageSlot label="撮影写真 6" src={gallery[5]} aspectRatio="4/5" />
-          </figure>
-        </div>
+        {(gallery.length > 0 ? gallery : Array.from({ length: 6 }, () => undefined)).map((src, i) => (
+          <ImageSlot
+            key={src ?? i}
+            label={`撮影写真 ${i + 1}`}
+            src={src}
+            aspectRatio="3/2"
+            priority={i < 3}
+          />
+        ))}
       </div>
 
       <hr className={`rule-short ${styles.divider}`} />
