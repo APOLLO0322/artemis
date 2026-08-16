@@ -1,17 +1,20 @@
 import Link from "next/link"
 import { Nav } from "@/components/Nav"
 import { Footer } from "@/components/Footer"
-import { ImageSlot } from "@/components/ImageSlot"
+import { HeroSlideshow } from "@/components/HeroSlideshow"
 import { ContactForm } from "@/components/ContactForm"
+import { getHeroImages } from "@/lib/heroImages"
 import styles from "./page.module.css"
 
 export default function HomePage() {
+  const heroImages = getHeroImages()
+
   return (
     <div className={styles.container}>
       <Nav />
 
       <div className={styles.heroWrap}>
-        <ImageSlot label="オープニング写真" height="min(94vh, 880px)" />
+        <HeroSlideshow images={heroImages} height="min(94vh, 880px)" />
         <p className={styles.heroLabel}>Artemis — Visual / Systems</p>
         <span className={styles.heroSquare} />
       </div>

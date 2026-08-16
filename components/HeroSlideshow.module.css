@@ -1,0 +1,22 @@
+.slideshow {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--color-neutral-200);
+}
+
+.slide {
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.4s ease-in-out;
+}
+
+.slideActive {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide {
+    transition: none;
+  }
+}
