@@ -6,8 +6,17 @@ import styles from "./page.module.css"
 
 export const metadata = {
   title: "About — Artemis",
-  description: "写真から始まり、システムに広がった。",
+  description: "写真から始まり、システムに広がった。Artemisのプロフィール。",
 }
+
+const profile = [
+  { label: "出身", value: "埼玉県" },
+  { label: "学歴", value: "上智大学 心理学科 卒業" },
+  { label: "経歴", value: "エンタメ業界で演劇プロデューサー → 愛媛へ移住 → 映像制作会社 共同代表 → 個人事業「Artemis」" },
+  { label: "現在", value: "写真・映像制作／Notion導入・バックオフィス構築／Web制作" },
+  { label: "資格", value: "Notion Certified Admin" },
+  { label: "好きなもの", value: "ダンス、パン、チョコ、クッキー、チーズ、さつまいも" },
+]
 
 export default function AboutPage() {
   return (
@@ -20,10 +29,13 @@ export default function AboutPage() {
           <p className={styles.kicker}>About</p>
           <h1 className={styles.title}>写真から始まり、システムに広がった。</h1>
           <p className={styles.lead}>
-            写真・映像制作を本業として、現場で撮る側にいながら、いつもその裏側の運営に手を出していた。請求、進行管理、クライアント対応——制作を続けるほど、仕組みの重要性に気づかされた。
+            埼玉県出身。上智大学心理学科を卒業後、エンタメ業界で演劇プロデューサーとして働く。舞台という、たくさんの人の手がひとつの本番に集まる現場で、つくることと、それを回すことの両方に向き合ってきた。
           </p>
           <p className={styles.lead}>
-            その延長で、Notionを使った業務設計に取り組み始め、Notion Certified
+            その後、愛媛へ移住。パートナーとの共同代表で映像制作会社を立ち上げ、並行して個人事業「Artemis」を始める。カメラマンとして写真も映像も撮り、編集まで手がけている。
+          </p>
+          <p className={styles.lead}>
+            Notionを使った業務設計に取り組み始め、Notion Certified
             Adminを取得。今は、写真・映像の制作と、Notion・バックオフィスの構築を、二本柱として並行して手がけている。
           </p>
         </div>
@@ -34,10 +46,28 @@ export default function AboutPage() {
 
       <hr className="rule-short" />
 
-      <section className={styles.story}>
-        <div className={`card-kicker dot kicker-i ${styles.storyKicker}`}>二本柱が地続きである理由</div>
-        <p className={styles.storyBody}>
-          制作の現場を自分自身で運営してきたからこそ、Notionでの業務設計にも現場の視点が入る。逆に、システムを組む実務があるからこそ、写真・映像の制作にも無駄なく向き合える。二つは別の仕事ではなく、同じ姿勢の二つの現れだと考えている。
+      <section className={styles.section}>
+        <div className={`card-kicker dot kicker-i ${styles.sectionKicker}`}>Profile</div>
+        <dl className={styles.profileList}>
+          {profile.map((item) => (
+            <div key={item.label} className={styles.profileRow}>
+              <dt className={styles.profileLabelCell}>{item.label}</dt>
+              <dd className={styles.profileValue}>{item.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      <hr className="rule-short" />
+
+      <section className={styles.section}>
+        <div className={`card-kicker dot kicker-i ${styles.sectionKicker}`}>大切にしていること</div>
+        <p className={styles.credo}>
+          自分の言葉を持つ<span className="kuten">。</span>
+          <br />
+          大切な人を支える力を持つ<span className="kuten">。</span>
+          <br />
+          できるまでやる<span className="kuten">。</span>
         </p>
       </section>
 
