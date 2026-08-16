@@ -43,7 +43,7 @@ export default function HomePage() {
               SUAL →
             </div>
             <p className={styles.pillarDesc}>
-              APOLLOをはじめとする現場での撮影・制作。感情に寄り添う色彩と構成で、記録を作品に変える。
+              現場での撮影・制作。感情に寄り添う色彩と構成で、記録を作品に変える。
             </p>
           </Link>
           <Link href="/systems" className={`${styles.pillar} ${styles.pillarDark}`}>

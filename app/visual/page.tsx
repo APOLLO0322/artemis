@@ -49,7 +49,7 @@ export default function VisualPage() {
           実績・制作クレジット
         </p>
         <div className={styles.creditsItem}>
-          <div className={styles.creditsTitle}>APOLLO</div>
+          <div className={styles.creditsTitle}>映像制作会社 ブランド撮影・ディレクション</div>
           <p className={styles.creditsBody}>
             撮影・映像ディレクションを担当。ブランドイメージの構築からアウトプットの色彩設計まで。
           </p>
