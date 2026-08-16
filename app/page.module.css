@@ -140,7 +140,8 @@
   position: absolute;
   top: calc(var(--space-6) * 1.4);
   left: 0;
-  transform: translateX(-8px);
+  /* Sits clear of the "01" in the left gutter, not overlapping it. */
+  transform: translateX(calc(-100% - 8px));
 }
 
 .pillarNum {
