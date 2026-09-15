@@ -55,18 +55,81 @@
   margin: calc(var(--space-8) * 1.8) auto;
 }
 
-/* ---------- cta ---------- */
+/* ---------- pricing ---------- */
 
-.cta {
+.pricing {
   padding: calc(var(--space-8) * 1.4) 0;
-  text-align: center;
   border-top: 2px solid var(--color-text);
 }
 
-.ctaLead {
-  font-family: var(--font-body);
-  color: var(--color-neutral-700);
+.kicker {
   margin: calc(var(--space-6) * 1.2) 0 var(--space-4);
+}
+
+.pricingTitle {
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  font-size: clamp(28px, 3.4vw, 40px);
+  margin: 0 0 var(--space-5);
+}
+
+.pricingLead {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.9;
+  max-width: 52ch;
+  margin: 0;
+  color: var(--color-neutral-700);
+}
+
+.planGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: calc(var(--space-6) * 1.2);
+}
+
+.planCard {
+  display: flex;
+  flex-direction: column;
+}
+
+.planPrice {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: var(--space-3) 0 0;
+  font-feature-settings: "tnum" 1;
+}
+
+.planNote {
+  font-family: var(--font-body);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--color-neutral-600);
+  margin: var(--space-1) 0 0;
+}
+
+.planItems {
+  list-style: none;
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  border-top: 1px solid var(--color-divider);
+}
+
+.planItems li {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-neutral-700);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.pricingCta {
+  margin-top: calc(var(--space-6) * 1.4);
 }
 
 /* ---------- responsive ---------- */
@@ -81,6 +144,11 @@
   }
 
   .gallery {
+    gap: var(--space-5);
+  }
+
+  .planGrid {
+    grid-template-columns: 1fr;
     gap: var(--space-5);
   }
 }
