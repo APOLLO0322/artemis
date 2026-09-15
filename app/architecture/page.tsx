@@ -33,7 +33,7 @@ export default function ArchitecturePage() {
 
   return (
     <div className={styles.container}>
-      <Nav />
+      <Nav variant="logo" />
 
       <section className={styles.hero}>
         <p className={styles.sideLabel}>Architecture</p>
