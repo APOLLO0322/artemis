@@ -6,6 +6,8 @@ type RevealProps = {
   children: ReactNode
   /** 連続して現れるときに少しずつ遅らせる（ミリ秒） */
   delay?: number
+  /** 自身は動かず、出現の合図だけを子要素に渡す */
+  plain?: boolean
   className?: string
 }
 
@@ -13,7 +15,7 @@ type RevealProps = {
  * 画面に入ったところで一度だけふわっと現れる。
  * 動きを減らす設定の人には効かないよう CSS 側で無効化してある。
  */
-export function Reveal({ children, delay = 0, className }: RevealProps) {
+export function Reveal({ children, delay = 0, plain = false, className }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
 
@@ -45,8 +47,12 @@ export function Reveal({ children, delay = 0, className }: RevealProps) {
   return (
     <div
       ref={ref}
-      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
-      className={["reveal", visible ? "reveal-visible" : "", className].filter(Boolean).join(" ")}
+      // 子要素はこの印を見て、自分のタイミングで動き出せる
+      data-revealed={visible ? "true" : "false"}
+      style={delay && !plain ? { transitionDelay: `${delay}ms` } : undefined}
+      className={[plain ? "" : "reveal", !plain && visible ? "reveal-visible" : "", className]
+        .filter(Boolean)
+        .join(" ")}
     >
       {children}
     </div>

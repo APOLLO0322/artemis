@@ -43,8 +43,27 @@
   margin-top: calc(var(--space-6) * 1.1);
 }
 
+/*
+ * 出現用の層。ボタン側は選択状態で濃淡が変わるため、
+ * 重ねずに分けておかないと打ち消し合う。
+ */
+.thumbReveal {
+  display: block;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+:global([data-revealed="true"]) .thumbReveal {
+  opacity: 1;
+  transform: none;
+}
+
 .thumb {
   position: relative;
+  display: block;
+  width: 100%;
   aspect-ratio: 3 / 2;
   padding: 0;
   border: none;
@@ -82,6 +101,12 @@
 
 @media (prefers-reduced-motion: reduce) {
   .thumb {
+    transition: none;
+  }
+
+  .thumbReveal {
+    opacity: 1;
+    transform: none;
     transition: none;
   }
 }

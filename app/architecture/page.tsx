@@ -1,7 +1,7 @@
 import { Nav } from "@/components/Nav"
 import { Footer } from "@/components/Footer"
 import { ImageSlot } from "@/components/ImageSlot"
-import { PropertyBlock } from "@/components/PropertyBlock"
+import { PropertyGallery } from "@/components/PropertyGallery"
 import { PhotoRequestForm } from "@/components/PhotoRequestForm"
 import { FloatingCta } from "@/components/FloatingCta"
 import { Reveal } from "@/components/Reveal"
@@ -61,7 +61,7 @@ export default function ArchitecturePage() {
         <Nav variant="logo" />
 
         <Reveal>
-          <section className={styles.hero}>
+          <section className={`${styles.rule} ${styles.hero}`}>
             <p className={styles.sideLabel}>Architecture</p>
             <div>
               <h1 className={styles.heroTitle}>
@@ -75,15 +75,11 @@ export default function ArchitecturePage() {
       </div>
 
       {properties.length > 0 ? (
-        <div className={styles.blocks}>
-          {properties.map((property) => (
-            <PropertyBlock
-              key={property.name}
-              images={property.images}
-              background={blockBackgrounds[property.name] ?? DEFAULT_BACKGROUND}
-            />
-          ))}
-        </div>
+        <PropertyGallery
+          properties={properties}
+          backgrounds={blockBackgrounds}
+          fallbackBackground={DEFAULT_BACKGROUND}
+        />
       ) : (
         <div className={styles.inner}>
           <div className={styles.gallery}>
@@ -98,11 +94,11 @@ export default function ArchitecturePage() {
         <hr className={`rule-short ${styles.divider}`} />
 
         <Reveal>
-          <section id="pricing" className={styles.pricing}>
+          <section id="pricing" className={`${styles.rule} ${styles.pricing}`}>
             <div className={`card-kicker dot kicker-i ${styles.kicker}`}>Pricing</div>
             <h2 className={styles.pricingTitle}>料金プラン</h2>
 
-            <div className={styles.base}>
+            <div className={`${styles.rule} ${styles.base}`}>
               <div className={styles.baseHead}>
                 <p className={styles.baseUnit}>{basePlan.unit}</p>
                 <p className={styles.basePrice}>
@@ -158,7 +154,7 @@ export default function ArchitecturePage() {
         </Reveal>
 
         <Reveal>
-          <section id="contact" className={styles.request}>
+          <section id="contact" className={`${styles.rule} ${styles.request}`}>
             <div className={`card-kicker dot kicker-i ${styles.kicker}`}>Request</div>
             <h2 className={styles.pricingTitle}>撮影のご依頼・お見積り</h2>
             <p className={styles.requestLead}>
