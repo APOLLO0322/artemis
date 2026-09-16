@@ -1,4 +1,9 @@
-.container {
+/* 色ブロックを画面幅いっぱいに出すため、幅の制限は中身側で行う */
+.page {
+  width: 100%;
+}
+
+.inner {
   max-width: 1180px;
   margin: 0 auto;
   padding: 0 var(--space-4);
@@ -45,6 +50,13 @@
 
 /* ---------- gallery ---------- */
 
+/* 物件ブロックの積み重ね。色ブロック同士は隙間なく隣り合わせる */
+.blocks {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 写真が未配置のときのプレースホルダー用 */
 .gallery {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

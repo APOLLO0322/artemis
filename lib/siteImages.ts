@@ -22,6 +22,29 @@ export function listImages(folder: string): string[] {
   }
 }
 
+export type ImageFolder = {
+  /** フォルダ名。物件の識別子として背景色の指定に使う */
+  name: string
+  images: string[]
+}
+
+/**
+ * `public/<folder>` の直下にあるサブフォルダを、それぞれの画像付きで返す。
+ * 物件ごとにフォルダを分けて置くと、そのままブロックの並びになる。
+ */
+export function listImageFolders(folder: string): ImageFolder[] {
+  try {
+    return fs
+      .readdirSync(path.join(PUBLIC_DIR, folder), { withFileTypes: true })
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => ({ name: entry.name, images: listImages(`${folder}/${entry.name}`) }))
+      .filter((group) => group.images.length > 0)
+      .sort((a, b) => a.name.localeCompare(b.name, "en", { numeric: true }))
+  } catch {
+    return []
+  }
+}
+
 /** First image in a folder under `public/`, for slots that hold a single photo. */
 export function firstImage(folder: string): string | undefined {
   return listImages(folder)[0]

@@ -50,6 +50,8 @@ body {
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body);
+  /* 全幅表示（100vw）がスクロールバー分だけはみ出すのを抑える */
+  overflow-x: hidden;
 }
 
 h1,
