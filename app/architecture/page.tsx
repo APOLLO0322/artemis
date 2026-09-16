@@ -3,6 +3,7 @@ import { Nav } from "@/components/Nav"
 import { Footer } from "@/components/Footer"
 import { ImageSlot } from "@/components/ImageSlot"
 import { PropertyBlock } from "@/components/PropertyBlock"
+import { Reveal } from "@/components/Reveal"
 import { listImageFolders } from "@/lib/siteImages"
 import styles from "./page.module.css"
 
@@ -56,19 +57,21 @@ export default function ArchitecturePage() {
       <div className={styles.inner}>
         <Nav variant="logo" />
 
-        <section className={styles.hero}>
-          <p className={styles.sideLabel}>Architecture</p>
-          <div>
-            <h1 className={styles.heroTitle}>
-              物件
-              <br />
-              撮影
-            </h1>
-            <p className={styles.heroLead}>
-              住宅・店舗・オフィスの竣工写真から、内観・外観・ディテールまで。設計とデザインの意図が、そのまま伝わる一枚に。
-            </p>
-          </div>
-        </section>
+        <Reveal>
+          <section className={styles.hero}>
+            <p className={styles.sideLabel}>Architecture</p>
+            <div>
+              <h1 className={styles.heroTitle}>
+                物件
+                <br />
+                撮影
+              </h1>
+              <p className={styles.heroLead}>
+                住宅・店舗・オフィスの竣工写真から、内観・外観・ディテールまで。設計とデザインの意図が、そのまま伝わる一枚に。
+              </p>
+            </div>
+          </section>
+        </Reveal>
       </div>
 
       {properties.length > 0 ? (
@@ -94,37 +97,39 @@ export default function ArchitecturePage() {
       <div className={styles.inner}>
         <hr className={`rule-short ${styles.divider}`} />
 
-        <section id="pricing" className={styles.pricing}>
-        <div className={`card-kicker dot kicker-i ${styles.kicker}`}>Pricing</div>
-        <h2 className={styles.pricingTitle}>料金プラン</h2>
+        <Reveal>
+          <section id="pricing" className={styles.pricing}>
+            <div className={`card-kicker dot kicker-i ${styles.kicker}`}>Pricing</div>
+            <h2 className={styles.pricingTitle}>料金プラン</h2>
 
-        {plans.length > 0 ? (
-          <div className={styles.planGrid}>
-            {plans.map((plan) => (
-              <div key={plan.name} className={`card ${styles.planCard}`}>
-                <div className="card-title">{plan.name}</div>
-                <p className={styles.planPrice}>{plan.price}</p>
-                {plan.note && <p className={styles.planNote}>{plan.note}</p>}
-                <ul className={styles.planItems}>
-                  {plan.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
+            {plans.length > 0 ? (
+              <div className={styles.planGrid}>
+                {plans.map((plan) => (
+                  <div key={plan.name} className={`card ${styles.planCard}`}>
+                    <div className="card-title">{plan.name}</div>
+                    <p className={styles.planPrice}>{plan.price}</p>
+                    {plan.note && <p className={styles.planNote}>{plan.note}</p>}
+                    <ul className={styles.planItems}>
+                      {plan.items.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        ) : (
-          <p className={styles.pricingLead}>
-            料金は物件の規模・撮影点数・納品形式に応じてお見積りします。まずはお気軽にご相談ください。
-          </p>
-        )}
+            ) : (
+              <p className={styles.pricingLead}>
+                料金は物件の規模・撮影点数・納品形式に応じてお見積りします。まずはお気軽にご相談ください。
+              </p>
+            )}
 
-          <div className={styles.pricingCta}>
-            <Link href="/#contact" className="btn btn-primary">
-              お見積りを依頼する
-            </Link>
-          </div>
-        </section>
+            <div className={styles.pricingCta}>
+              <Link href="/#contact" className="btn btn-primary">
+                お見積りを依頼する
+              </Link>
+            </div>
+          </section>
+        </Reveal>
 
         <Footer />
       </div>

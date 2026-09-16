@@ -1,34 +1,50 @@
 /* 画面幅いっぱいの色ブロック。物件の切れ目は背景色の変化で示す */
 .block {
   width: 100%;
-  padding: calc(var(--space-8) * 1.1) 0;
+  padding: calc(var(--space-8) * 1.9) 0;
 }
 
 .inner {
   max-width: 1180px;
   margin: 0 auto;
-  padding: 0 var(--space-4);
+  padding: 0 var(--space-6);
 }
 
-/* 主役の1枚 */
+/*
+ * 主役の1枚。高さを揃えたまま写真本来の縦横比で見せるので、
+ * 横位置でも縦位置でも切り取られない。
+ */
 .stage {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  background: rgba(30, 29, 26, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 66vh;
 }
 
 .stageImage {
-  object-fit: cover;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 66vh;
+  object-fit: contain;
+  animation: stageIn 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+@keyframes stageIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* サムネイル */
 .thumbs {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: var(--space-3);
-  margin-top: var(--space-3);
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-4);
+  margin-top: calc(var(--space-6) * 1.1);
 }
 
 .thumb {
@@ -36,26 +52,32 @@
   aspect-ratio: 3 / 2;
   padding: 0;
   border: none;
-  background: rgba(30, 29, 26, 0.06);
+  background: rgba(30, 29, 26, 0.05);
   cursor: pointer;
   overflow: hidden;
-  opacity: 0.55;
-  transition: opacity 0.2s ease;
+  opacity: 0.5;
+  transition: opacity 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .thumb:hover {
-  opacity: 1;
+  opacity: 0.85;
 }
 
 .thumbActive {
   opacity: 1;
-  outline: 2px solid var(--color-text);
-  outline-offset: -2px;
+}
+
+.thumbActive::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--color-text);
+  pointer-events: none;
 }
 
 .thumb:focus-visible {
   outline: 2px solid var(--color-accent-700);
-  outline-offset: 2px;
+  outline-offset: 3px;
 }
 
 .thumbImage {
@@ -63,18 +85,32 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .thumb {
+  .thumb,
+  .stageImage {
     transition: none;
+    animation: none;
   }
 }
 
 /* スマホは暫定（PCビュー優先で調整中） */
 @media (max-width: 860px) {
   .block {
-    padding: calc(var(--space-8) * 0.8) 0;
+    padding: calc(var(--space-8) * 1.1) 0;
+  }
+
+  .inner {
+    padding: 0 var(--space-4);
+  }
+
+  .stage,
+  .stageImage {
+    min-height: 0;
+    max-height: 56vh;
   }
 
   .thumbs {
     grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-2);
+    margin-top: var(--space-4);
   }
 }

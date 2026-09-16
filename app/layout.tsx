@@ -21,6 +21,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja" className={notoSansJP.variable}>
+      <head>
+        {/* JSが動かない環境でフェードイン待ちのまま消えないようにする */}
+        <noscript>
+          <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
+      </head>
       <body>{children}</body>
     </html>
   )

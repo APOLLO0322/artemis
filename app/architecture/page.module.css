@@ -6,17 +6,17 @@
 .inner {
   max-width: 1180px;
   margin: 0 auto;
-  padding: 0 var(--space-4);
+  padding: 0 var(--space-6);
 }
 
 /* ---------- hero ---------- */
 
 .hero {
-  padding: calc(var(--space-6) * 1.2) 0 calc(var(--space-8) * 1.2);
+  padding: calc(var(--space-6) * 1.4) 0 calc(var(--space-8) * 1.8);
   border-top: 2px solid var(--color-text);
   position: relative;
   display: flex;
-  gap: var(--space-5);
+  gap: var(--space-6);
 }
 
 .sideLabel {
@@ -64,13 +64,13 @@
 }
 
 .divider {
-  margin: calc(var(--space-8) * 1.8) auto;
+  margin: calc(var(--space-8) * 2.2) auto;
 }
 
 /* ---------- pricing ---------- */
 
 .pricing {
-  padding: calc(var(--space-8) * 1.4) 0;
+  padding: calc(var(--space-8) * 1.8) 0;
   border-top: 2px solid var(--color-text);
 }
 
