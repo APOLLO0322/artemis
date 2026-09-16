@@ -1,10 +1,10 @@
-import Link from "next/link"
 import { Nav } from "@/components/Nav"
 import { Footer } from "@/components/Footer"
 import { ImageSlot } from "@/components/ImageSlot"
 import { PropertyBlock } from "@/components/PropertyBlock"
+import { PhotoRequestForm } from "@/components/PhotoRequestForm"
 import { Reveal } from "@/components/Reveal"
-import { listImageFolders } from "@/lib/siteImages"
+import { imageIfExists, listImageFolders } from "@/lib/siteImages"
 import styles from "./page.module.css"
 
 export const metadata = {
@@ -13,22 +13,21 @@ export const metadata = {
     "住宅・店舗・オフィスの竣工写真、内観・外観・ディテール撮影。建築とデザインの意図が伝わる一枚に。",
 }
 
-type Plan = {
-  name: string
-  price: string
-  note?: string
-  items: string[]
+/** 基本プラン */
+const basePlan = {
+  unit: "20カット",
+  price: "20,000",
+  tax: "税別",
+  items: ["横画角のみ（納品枚数の追加は応相談）", "撮影日から3日で納品"],
 }
 
-/**
- * 料金プラン。ここに項目を足すとカードが並び、空のままなら
- * 「お見積り」の案内文だけが表示される。
- *
- * 例:
- * { name: "半日プラン", price: "¥50,000", note: "税別・交通費別",
- *   items: ["撮影 4時間", "納品 30カット", "データ納品"] }
- */
-const plans: Plan[] = []
+/** オプション。料金表と申し込みフォームで同じ内容を使う */
+const options = [
+  { name: "SNS用 縦画角写真", detail: "10カット", price: "8,000" },
+  { name: "ルームツアー動画", detail: "1本", price: "10,000", note: "テロップ入れの編集まで行う場合は 30,000円" },
+  { name: "特殊編集", detail: "映り込み削除など", price: "500", unit: "／カット", note: "内容により応相談" },
+  { name: "翌日納品", detail: "", price: "5,000" },
+]
 
 /**
  * 物件ブロックの背景色。`public/architecture/` のフォルダ名がキー。
@@ -51,6 +50,9 @@ const DEFAULT_BACKGROUND = "#F2F1EE"
 
 export default function ArchitecturePage() {
   const properties = listImageFolders("architecture")
+  // 置かれたときだけ「特殊編集の例」が出る
+  const retouchBefore = imageIfExists("retouch/before.jpg")
+  const retouchAfter = imageIfExists("retouch/after.jpg")
 
   return (
     <div className={styles.page}>
@@ -102,32 +104,69 @@ export default function ArchitecturePage() {
             <div className={`card-kicker dot kicker-i ${styles.kicker}`}>Pricing</div>
             <h2 className={styles.pricingTitle}>料金プラン</h2>
 
-            {plans.length > 0 ? (
-              <div className={styles.planGrid}>
-                {plans.map((plan) => (
-                  <div key={plan.name} className={`card ${styles.planCard}`}>
-                    <div className="card-title">{plan.name}</div>
-                    <p className={styles.planPrice}>{plan.price}</p>
-                    {plan.note && <p className={styles.planNote}>{plan.note}</p>}
-                    <ul className={styles.planItems}>
-                      {plan.items.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+            <div className={styles.base}>
+              <div className={styles.baseHead}>
+                <p className={styles.baseUnit}>{basePlan.unit}</p>
+                <p className={styles.basePrice}>
+                  <span className={styles.yen}>¥</span>
+                  {basePlan.price}
+                  <span className={styles.baseTax}>{basePlan.tax}</span>
+                </p>
               </div>
-            ) : (
-              <p className={styles.pricingLead}>
-                料金は物件の規模・撮影点数・納品形式に応じてお見積りします。まずはお気軽にご相談ください。
-              </p>
+              <ul className={styles.baseItems}>
+                {basePlan.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className={styles.optionsHead}>Option</div>
+            <dl className={styles.options}>
+              {options.map((option) => (
+                <div key={option.name} className={styles.optionRow}>
+                  <dt className={styles.optionName}>
+                    {option.name}
+                    {option.detail && <span className={styles.optionDetail}>{option.detail}</span>}
+                  </dt>
+                  <dd className={styles.optionPrice}>
+                    ¥{option.price}
+                    {option.unit && <span className={styles.optionUnit}>{option.unit}</span>}
+                  </dd>
+                  {option.note && <dd className={styles.optionNote}>{option.note}</dd>}
+                </div>
+              ))}
+            </dl>
+
+            {retouchBefore && retouchAfter && (
+              <div className={styles.retouch}>
+                <p className={styles.retouchLabel}>特殊編集の例</p>
+                <div className={styles.retouchPair}>
+                  <figure className={styles.retouchItem}>
+                    <ImageSlot label="Before" src={retouchBefore} aspectRatio="3/2" />
+                    <figcaption className={styles.retouchCaption}>Before</figcaption>
+                  </figure>
+                  <figure className={styles.retouchItem}>
+                    <ImageSlot label="After" src={retouchAfter} aspectRatio="3/2" />
+                    <figcaption className={styles.retouchCaption}>After</figcaption>
+                  </figure>
+                </div>
+              </div>
             )}
 
-            <div className={styles.pricingCta}>
-              <Link href="/#contact" className="btn btn-primary">
-                お見積りを依頼する
-              </Link>
-            </div>
+            <p className={styles.pricingNote}>
+              表示はすべて税別です。撮影場所までの交通費は別途申し受けます。カット数の追加や記載のないご依頼もご相談ください。
+            </p>
+          </section>
+        </Reveal>
+
+        <Reveal>
+          <section id="contact" className={styles.request}>
+            <div className={`card-kicker dot kicker-i ${styles.kicker}`}>Request</div>
+            <h2 className={styles.pricingTitle}>撮影のご依頼・お見積り</h2>
+            <p className={styles.requestLead}>
+              下記をお送りいただければ、折り返し正式なお見積りと空き日程をご連絡します。オプションを選ぶとその場で概算が表示されます。
+            </p>
+            <PhotoRequestForm />
           </section>
         </Reveal>
 
