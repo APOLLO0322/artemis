@@ -3,6 +3,7 @@ import { Footer } from "@/components/Footer"
 import { ImageSlot } from "@/components/ImageSlot"
 import { PropertyBlock } from "@/components/PropertyBlock"
 import { PhotoRequestForm } from "@/components/PhotoRequestForm"
+import { FloatingCta } from "@/components/FloatingCta"
 import { Reveal } from "@/components/Reveal"
 import { imageIfExists, listImageFolders } from "@/lib/siteImages"
 import styles from "./page.module.css"
@@ -172,6 +173,8 @@ export default function ArchitecturePage() {
 
         <Footer />
       </div>
+
+      <FloatingCta targetId="pricing" label="料金・お問合せ" hideNearIds={["contact"]} />
     </div>
   )
 }
