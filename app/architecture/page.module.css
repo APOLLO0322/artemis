@@ -39,15 +39,6 @@
   letter-spacing: 0.02em;
 }
 
-.heroLead {
-  font-family: var(--font-body);
-  font-size: 17px;
-  line-height: 1.9;
-  max-width: 44ch;
-  margin: var(--space-5) 0 0;
-  color: var(--color-neutral-700);
-}
-
 /* ---------- gallery ---------- */
 
 /* 物件ブロックの積み重ね。色ブロック同士は隙間なく隣り合わせる */
@@ -104,7 +95,7 @@
 .baseUnit {
   font-family: var(--font-body);
   font-weight: 700;
-  font-size: 15px;
+  font-size: 18px;
   letter-spacing: 0.12em;
   color: var(--color-accent-700);
 }
@@ -125,7 +116,7 @@
 }
 
 .baseTax {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 400;
   letter-spacing: 0.08em;
   color: var(--color-neutral-600);
@@ -140,7 +131,7 @@
 
 .baseItems li {
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.8;
   color: var(--color-neutral-700);
   padding-left: var(--space-4);
@@ -168,7 +159,7 @@
   font-family: var(--font-body);
   font-style: italic;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 15px;
   letter-spacing: 0.1em;
   color: var(--color-accent-700);
   margin: calc(var(--space-8) * 1.1) 0 var(--space-4);
@@ -192,13 +183,13 @@
 .optionName {
   font-family: var(--font-body);
   font-weight: 700;
-  font-size: 16px;
+  font-size: 18px;
   letter-spacing: -0.01em;
 }
 
 .optionDetail {
   font-weight: 400;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--color-neutral-600);
   margin-left: var(--space-3);
 }
@@ -206,7 +197,7 @@
 .optionPrice {
   font-family: var(--font-body);
   font-weight: 700;
-  font-size: 20px;
+  font-size: 24px;
   letter-spacing: -0.01em;
   font-feature-settings: "tnum" 1;
   margin: 0;
@@ -214,7 +205,7 @@
 }
 
 .optionUnit {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
   color: var(--color-neutral-600);
   margin-left: 2px;
@@ -224,7 +215,7 @@
   grid-column: 1 / -1;
   margin: 0;
   font-family: var(--font-body);
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.7;
   color: var(--color-neutral-600);
 }
@@ -239,7 +230,7 @@
 .retouchLabel {
   font-family: var(--font-body);
   font-weight: 700;
-  font-size: 13px;
+  font-size: 15px;
   letter-spacing: 0.1em;
   color: var(--color-accent-700);
   margin-bottom: var(--space-4);
@@ -257,7 +248,7 @@
 
 .retouchCaption {
   font-family: var(--font-body);
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-neutral-600);
@@ -266,7 +257,7 @@
 
 .pricingNote {
   font-family: var(--font-body);
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.9;
   color: var(--color-neutral-600);
   max-width: 68ch;
@@ -301,11 +292,6 @@
   }
 
   .gallery {
-    gap: var(--space-5);
-  }
-
-  .planGrid {
-    grid-template-columns: 1fr;
     gap: var(--space-5);
   }
 }

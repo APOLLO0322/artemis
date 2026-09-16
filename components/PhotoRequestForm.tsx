@@ -5,8 +5,6 @@ import styles from "./PhotoRequestForm.module.css"
 
 const BASE_PRICE = 20000
 
-const PROPERTY_TYPES = ["住宅", "店舗", "オフィス", "その他"]
-
 const ROOM_TOUR = [
   { value: "なし", amount: 0 },
   { value: "撮影のみ（1本）", amount: 10000 },
@@ -54,7 +52,6 @@ export function PhotoRequestForm() {
       email: String(data.get("email") ?? ""),
       phone: String(data.get("phone") ?? ""),
       location: String(data.get("location") ?? ""),
-      propertyType: String(data.get("propertyType") ?? ""),
       preferredDate: String(data.get("preferredDate") ?? ""),
       deliveryDate: String(data.get("deliveryDate") ?? ""),
       roomTour,
@@ -117,19 +114,6 @@ export function PhotoRequestForm() {
         <div className="field">
           <label htmlFor="req-phone">お電話番号（任意）</label>
           <input className="input" id="req-phone" name="phone" maxLength={40} placeholder="090-0000-0000" />
-        </div>
-        <div className="field">
-          <label htmlFor="req-type">物件の種別</label>
-          <select className="input" id="req-type" name="propertyType" defaultValue="" required>
-            <option value="" disabled>
-              選択してください
-            </option>
-            {PROPERTY_TYPES.map((type) => (
-              <option key={type} value={type}>
-                {type}
-              </option>
-            ))}
-          </select>
         </div>
         <div className="field">
           <label htmlFor="req-location">物件の所在地</label>

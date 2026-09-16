@@ -26,7 +26,7 @@ const basePlan = {
 const options = [
   { name: "SNS用 縦画角写真", detail: "10カット", price: "8,000" },
   { name: "ルームツアー動画", detail: "1本", price: "10,000", note: "テロップ入れの編集まで行う場合は 30,000円" },
-  { name: "特殊編集", detail: "映り込み削除など", price: "500", unit: "／カット", note: "内容により応相談" },
+  { name: "特殊編集", detail: "映り込み削除など", price: "500", unit: "／カット〜", note: "内容により応相談" },
   { name: "翌日納品", detail: "", price: "5,000" },
 ]
 
@@ -69,9 +69,6 @@ export default function ArchitecturePage() {
                 <br />
                 撮影
               </h1>
-              <p className={styles.heroLead}>
-                住宅・店舗・オフィスの竣工写真から、内観・外観・ディテールまで。設計とデザインの意図が、そのまま伝わる一枚に。
-              </p>
             </div>
           </section>
         </Reveal>

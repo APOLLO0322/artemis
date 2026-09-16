@@ -20,10 +20,9 @@ export async function POST(request: Request) {
   const name = text("name")
   const email = text("email", 320)
   const location = text("location")
-  const propertyType = text("propertyType")
   const preferredDate = text("preferredDate")
 
-  if (!name || !email || !location || !propertyType || !preferredDate) {
+  if (!name || !email || !location || !preferredDate) {
     return NextResponse.json({ error: "必須項目が入力されていません" }, { status: 400 })
   }
 
@@ -56,7 +55,6 @@ export async function POST(request: Request) {
     `メール: ${email}`,
     `電話: ${phone || "（未記入）"}`,
     "",
-    `物件種別: ${propertyType}`,
     `所在地: ${location}`,
     `撮影希望日・時期: ${preferredDate}`,
     `納品希望日: ${deliveryDate || "（指定なし）"}`,
@@ -76,7 +74,7 @@ export async function POST(request: Request) {
       from: fromEmail,
       to: toEmail,
       replyTo: email,
-      subject: `【物件撮影 依頼】${company || name} 様／${propertyType}・${location}`,
+      subject: `【物件撮影 依頼】${company || name} 様／${location}`,
       text: lines.join("\n"),
     })
 
