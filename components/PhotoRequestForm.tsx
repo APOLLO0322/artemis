@@ -83,7 +83,7 @@ export function PhotoRequestForm() {
   if (status === "success") {
     return (
       <p className={styles.success}>
-        ありがとうございます。内容を確認のうえ、正式なお見積りと撮影可能な日程を2営業日以内にご返信します。
+        ありがとうございます。内容を確認のうえ、24時間以内に正式なお見積もりと撮影日についてご連絡いたします。
       </p>
     )
   }

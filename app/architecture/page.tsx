@@ -159,7 +159,7 @@ export default function ArchitecturePage() {
             <div className={`card-kicker dot kicker-i ${styles.kicker}`}>Request</div>
             <h2 className={styles.pricingTitle}>撮影のご依頼・お見積り</h2>
             <p className={styles.requestLead}>
-              下記をお送りいただければ、折り返し正式なお見積りと空き日程をご連絡します。オプションを選ぶとその場で概算が表示されます。
+              ご依頼は以下フォームからご連絡ください。フォーム受信後24時間以内に、折り返し正式なお見積もりと撮影日についてご連絡いたします。
             </p>
             <PhotoRequestForm />
           </section>
