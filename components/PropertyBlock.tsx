@@ -106,8 +106,8 @@ export function PropertyBlock({ images, dark = false, index, total }: PropertyBl
             <div className={styles.meta}>
               <span>
                 {index !== undefined && total !== undefined
-                  ? `Property ${String(index).padStart(2, "0")} / ${String(total).padStart(2, "0")}`
-                  : "Property"}
+                  ? `Archive ${String(index).padStart(2, "0")} / ${String(total).padStart(2, "0")}`
+                  : "Archive"}
               </span>
               <span className={styles.counter}>
                 {String(active + 1).padStart(2, "0")}
