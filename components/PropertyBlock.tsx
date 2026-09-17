@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { useCallback, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import type { SizedImage } from "@/lib/siteImages"
 import { Reveal } from "./Reveal"
 import styles from "./PropertyBlock.module.css"
@@ -11,20 +11,53 @@ type PropertyBlockProps = {
 }
 
 export function PropertyBlock({ images }: PropertyBlockProps) {
+  // いま大きく出している写真
   const [active, setActive] = useState(0)
-  // 一度表示した写真はDOMに残す。再度選んだときに読み込みが起きず、すぐ入れ替わる
-  const [loaded, setLoaded] = useState<number[]>([0])
+  // DOMに載せた写真。一度載せたものは外さないので、選び直しても読み込みが起きない
+  const [mounted, setMounted] = useState<number[]>([0])
+  // 読み込みが終わった写真。終わる前に切り替えると一瞬白く抜けるため、待ってから差し替える
+  const [ready, setReady] = useState<number[]>([])
+  // クリックされたが、まだ読み込み中の写真
+  const [pending, setPending] = useState<number | null>(null)
 
-  const preload = useCallback((index: number) => {
-    setLoaded((current) => (current.includes(index) ? current : [...current, index]))
+  const mount = useCallback((index: number) => {
+    setMounted((current) => (current.includes(index) ? current : [...current, index]))
   }, [])
+
+  const markReady = useCallback((index: number) => {
+    setReady((current) => (current.includes(index) ? current : [...current, index]))
+  }, [])
+
+  // 待たせていた写真の読み込みが終わったら、そこで初めて差し替える
+  useEffect(() => {
+    if (pending === null) return
+
+    if (ready.includes(pending)) {
+      setActive(pending)
+      setPending(null)
+      return
+    }
+
+    // 読み込み完了が通知されない場合でも、押したまま反応しない状態にはしない
+    const timer = setTimeout(() => {
+      setActive(pending)
+      setPending(null)
+    }, 2500)
+    return () => clearTimeout(timer)
+  }, [pending, ready])
 
   const show = useCallback(
     (index: number) => {
-      preload(index)
-      setActive(index)
+      mount(index)
+      if (ready.includes(index)) {
+        setPending(null)
+        setActive(index)
+      } else {
+        // 読み込めるまでは今の写真を出したままにする
+        setPending(index)
+      }
     },
-    [preload],
+    [mount, ready],
   )
 
   return (
@@ -33,7 +66,7 @@ export function PropertyBlock({ images }: PropertyBlockProps) {
         <Reveal>
           <div className={styles.stage}>
             {images.map((image, i) =>
-              loaded.includes(i) ? (
+              mounted.includes(i) ? (
                 <Image
                   key={image.src}
                   src={image.src}
@@ -43,6 +76,13 @@ export function PropertyBlock({ images }: PropertyBlockProps) {
                   sizes="(max-width: 1180px) 100vw, 1180px"
                   quality={88}
                   priority={i === 0}
+                  // 必要になった写真だけを載せているので、遅延させず即座に取りに行く
+                  loading={i === 0 ? undefined : "eager"}
+                  onLoad={() => markReady(i)}
+                  // キャッシュ済みだと onLoad が発火しないことがあるため、その場で確かめる
+                  ref={(el) => {
+                    if (el?.complete && el.naturalWidth > 0) markReady(i)
+                  }}
                   aria-hidden={i === active ? undefined : true}
                   className={i === active ? styles.stageImage : `${styles.stageImage} ${styles.stageImageHidden}`}
                 />
@@ -65,8 +105,8 @@ export function PropertyBlock({ images }: PropertyBlockProps) {
                     type="button"
                     onClick={() => show(i)}
                     // カーソルが乗った時点で読み込んでおき、クリック時には待たせない
-                    onMouseEnter={() => preload(i)}
-                    onFocus={() => preload(i)}
+                    onMouseEnter={() => mount(i)}
+                    onFocus={() => mount(i)}
                     aria-label={`物件写真 ${i + 1} を大きく表示`}
                     aria-current={i === active ? "true" : undefined}
                     className={i === active ? `${styles.thumb} ${styles.thumbActive}` : styles.thumb}

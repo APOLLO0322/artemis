@@ -4,6 +4,9 @@ import path from "node:path"
 const PUBLIC_DIR = path.join(process.cwd(), "public")
 const IMAGE_EXTENSIONS = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"])
 
+/** この接頭辞を付けたファイルは、フォルダ内で必ず最後に並ぶ */
+const TRAILING_PREFIX = "z_"
+
 /**
  * Lists the images dropped into a folder under `public/`, sorted by filename.
  * Runs at build time — adding or removing a file changes the page, no code
@@ -15,7 +18,14 @@ export function listImages(folder: string): string[] {
     return fs
       .readdirSync(path.join(PUBLIC_DIR, folder))
       .filter((file) => IMAGE_EXTENSIONS.has(path.extname(file).toLowerCase()))
-      .sort((a, b) => a.localeCompare(b, "en", { numeric: true }))
+      .sort((a, b) => {
+        // `z_` で始まるファイルは常に最後に回す（外観写真などを末尾に置くため）。
+        // 日本語のファイル名が混ざっても順序が崩れないよう、照合順序には任せない。
+        const lastA = a.startsWith(TRAILING_PREFIX) ? 1 : 0
+        const lastB = b.startsWith(TRAILING_PREFIX) ? 1 : 0
+        if (lastA !== lastB) return lastA - lastB
+        return a.localeCompare(b, "en", { numeric: true })
+      })
       .map((file) => `/${folder}/${file}`)
   } catch {
     return []
