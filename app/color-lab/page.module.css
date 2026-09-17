@@ -22,21 +22,7 @@
   font-size: 16px;
   line-height: 1.9;
   color: var(--color-neutral-700);
-  margin: 0 0 var(--space-4);
-}
-
-.legend {
-  display: flex;
-  gap: var(--space-5);
-  flex-wrap: wrap;
-  font-family: var(--font-body);
-  font-size: 13px;
-  color: var(--color-neutral-600);
-  margin: 0;
-}
-
-.legendItem {
-  white-space: nowrap;
+  margin: 0 0 var(--space-3);
 }
 
 .property {
@@ -70,16 +56,16 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-4);
 }
 
 .panel {
   margin: 0;
-  padding: var(--space-5) var(--space-4) var(--space-3);
+  padding: calc(var(--space-6) * 1.1) var(--space-5) var(--space-4);
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-5);
 }
 
 .photo {
@@ -92,12 +78,13 @@
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: 200px;
+  max-height: 240px;
   object-fit: contain;
 }
 
 .caption {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1.8em auto 1fr;
   align-items: baseline;
   gap: var(--space-2);
   font-family: var(--font-body);
@@ -107,19 +94,40 @@
 
 .key {
   font-weight: 700;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--color-text);
-  min-width: 1.6em;
 }
 
 .label {
-  margin-right: auto;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--color-text);
 }
 
 .hex {
   font-feature-settings: "tnum" 1;
   letter-spacing: 0.02em;
+  text-align: right;
   color: var(--color-neutral-600);
+}
+
+.note {
+  grid-column: 2 / -1;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-neutral-600);
+}
+
+/* 濃い背景では説明文を反転させる */
+.panelDark .key,
+.panelDark .label {
+  color: #ffffff;
+}
+
+.panelDark .caption,
+.panelDark .hex,
+.panelDark .note {
+  color: rgba(255, 255, 255, 0.72);
 }
 
 @media (max-width: 1100px) {
