@@ -8,9 +8,11 @@ import styles from "./PropertyBlock.module.css"
 
 type PropertyBlockProps = {
   images: SizedImage[]
+  /** 背景が沈んだ色のとき、サムネイルの枠と濃淡を明るい側へ反転させる */
+  dark?: boolean
 }
 
-export function PropertyBlock({ images }: PropertyBlockProps) {
+export function PropertyBlock({ images, dark = false }: PropertyBlockProps) {
   // いま大きく出している写真
   const [active, setActive] = useState(0)
   // DOMに載せた写真。一度載せたものは外さないので、選び直しても読み込みが起きない
@@ -61,7 +63,7 @@ export function PropertyBlock({ images }: PropertyBlockProps) {
   )
 
   return (
-    <section className={styles.block}>
+    <section className={dark ? `${styles.block} ${styles.blockDark}` : styles.block}>
       <div className={styles.inner}>
         <Reveal>
           <div className={styles.stage}>

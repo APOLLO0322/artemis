@@ -16,7 +16,8 @@
   font-size: 13px;
   letter-spacing: 0.1em;
   text-decoration: none;
-  box-shadow: 0 10px 30px rgba(30, 29, 26, 0.18);
+  /* 濃い背景に重なっても輪郭が残るよう、内側に細い明るい線を持たせる */
+  box-shadow: 0 10px 30px rgba(30, 29, 26, 0.18), inset 0 0 0 1px rgba(255, 255, 255, 0.28);
 
   opacity: 0;
   transform: translateY(14px);

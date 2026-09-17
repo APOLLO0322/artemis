@@ -90,6 +90,31 @@
   pointer-events: none;
 }
 
+/* ---------- 沈んだ背景のとき ---------- */
+
+/* 黒い枠は背景に溶けるので、明るい枠に入れ替える */
+.blockDark .thumbActive::after {
+  border-color: rgba(255, 255, 255, 0.85);
+}
+
+/* 濃い地の上では、選んでいないサムネイルが沈みすぎないよう少し持ち上げる */
+.blockDark .thumb {
+  opacity: 0.4;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.blockDark .thumb:hover {
+  opacity: 0.8;
+}
+
+.blockDark .thumbActive {
+  opacity: 1;
+}
+
+.blockDark .stage {
+  background: transparent;
+}
+
 .thumb:focus-visible {
   outline: 2px solid var(--color-accent-700);
   outline-offset: 3px;
