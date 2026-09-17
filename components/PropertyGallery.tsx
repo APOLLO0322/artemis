@@ -64,6 +64,8 @@ export function PropertyGallery({ properties, backgrounds, fallbackBackground }:
             images={property.images}
             // 濃い背景では、サムネイルの枠や濃淡を明るい側に反転させる
             dark={isDark(backgrounds[property.name] ?? fallbackBackground)}
+            index={index + 1}
+            total={properties.length}
           />
         </div>
       ))}

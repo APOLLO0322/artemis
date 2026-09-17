@@ -1,13 +1,20 @@
+/*
+ * 右端の中ほどに縦で貼り付く。画面下に置くとサムネイルと重なるため、
+ * サイトの縦書きラベルと同じ語彙で脇に逃がしている。
+ */
 .cta {
   position: fixed;
-  right: calc(var(--space-6) * 1.1);
-  bottom: calc(var(--space-6) * 1.1);
+  right: 0;
+  top: 50%;
+  transform: translate(0, -50%);
   z-index: 20;
 
   display: inline-flex;
   align-items: center;
   gap: var(--space-3);
-  padding: 16px 26px;
+  padding: 22px 14px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
 
   background: var(--color-text);
   color: var(--color-bg);
@@ -20,7 +27,7 @@
   box-shadow: 0 10px 30px rgba(30, 29, 26, 0.18), inset 0 0 0 1px rgba(255, 255, 255, 0.28);
 
   opacity: 0;
-  transform: translateY(14px);
+  transform: translate(14px, -50%);
   pointer-events: none;
   transition: opacity 0.5s cubic-bezier(0.22, 0.61, 0.36, 1),
     transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1), background-color 0.2s ease;
@@ -28,7 +35,7 @@
 
 .ctaVisible {
   opacity: 1;
-  transform: none;
+  transform: translate(0, -50%);
   pointer-events: auto;
 }
 
@@ -43,23 +50,24 @@
   outline-offset: 3px;
 }
 
+/* 縦組みでは矢印が横向きに回るので、字だけ起こして下向きに保つ */
 .arrow {
   font-size: 14px;
   line-height: 1;
+  writing-mode: horizontal-tb;
+  text-orientation: upright;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .cta {
     transition: none;
-    transform: none;
+    transform: translate(0, -50%);
   }
 }
 
 @media (max-width: 720px) {
   .cta {
-    right: var(--space-4);
-    bottom: var(--space-4);
-    padding: 14px 20px;
+    padding: 18px 12px;
     font-size: 12px;
     gap: var(--space-2);
   }

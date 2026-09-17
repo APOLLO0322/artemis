@@ -1,7 +1,11 @@
-/* 画面幅いっぱいの色ブロック。物件の切れ目は背景色の変化で示す */
+/*
+ * 画面幅いっぱいの色ブロック。物件の切れ目は背景色の変化で示す。
+ * 上下の余白・写真・サムネイルの合計が画面の縦幅に収まるよう、
+ * それぞれ vh で配分してある（1440×900 でおよそ 84vh）。
+ */
 .block {
   width: 100%;
-  padding: calc(var(--space-8) * 1.9) 0;
+  padding: clamp(36px, 6.5vh, 88px) 0;
 }
 
 .inner {
@@ -16,7 +20,7 @@
  */
 .stage {
   position: relative;
-  min-height: 66vh;
+  min-height: clamp(300px, 68vh, 860px);
 }
 
 /* 写真は重ねて置き、表示中の1枚だけ見せる。切り替えは瞬時（演出なし） */
@@ -27,7 +31,7 @@
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: 66vh;
+  max-height: clamp(300px, 68vh, 860px);
   object-fit: contain;
 }
 
@@ -35,12 +39,40 @@
   visibility: hidden;
 }
 
-/* サムネイル */
+/* 写真とサムネイルの境目。細い罫線に通し番号と枚数を載せる */
+.meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-top: clamp(16px, 2.6vh, 34px);
+  padding-top: var(--space-3);
+  border-top: 1px solid rgba(30, 29, 26, 0.18);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-neutral-600);
+}
+
+.counter {
+  font-feature-settings: "tnum" 1;
+  letter-spacing: 0.12em;
+  color: var(--color-text);
+}
+
+.counterTotal {
+  color: var(--color-neutral-500);
+}
+
+/* サムネイル。枚数が増えても必ず1行に収める */
 .thumbs {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: var(--space-4);
-  margin-top: calc(var(--space-6) * 1.1);
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 10px;
+  margin: var(--space-3) auto 0;
 }
 
 /*
@@ -113,6 +145,19 @@
 
 .blockDark .stage {
   background: transparent;
+}
+
+.blockDark .meta {
+  border-top-color: rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.blockDark .counter {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.blockDark .counterTotal {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .thumb:focus-visible {

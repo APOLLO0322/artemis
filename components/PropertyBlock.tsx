@@ -6,13 +6,20 @@ import type { SizedImage } from "@/lib/siteImages"
 import { Reveal } from "./Reveal"
 import styles from "./PropertyBlock.module.css"
 
+/** サムネイル1枚の上限幅。枚数が少ないときに間延びさせない */
+const THUMB_MAX = 124
+const THUMB_GAP = 10
+
 type PropertyBlockProps = {
   images: SizedImage[]
   /** 背景が沈んだ色のとき、サムネイルの枠と濃淡を明るい側へ反転させる */
   dark?: boolean
+  /** ギャラリー内での通し番号（1始まり）と総数 */
+  index?: number
+  total?: number
 }
 
-export function PropertyBlock({ images, dark = false }: PropertyBlockProps) {
+export function PropertyBlock({ images, dark = false, index, total }: PropertyBlockProps) {
   // いま大きく出している写真
   const [active, setActive] = useState(0)
   // DOMに載せた写真。一度載せたものは外さないので、選び直しても読み込みが起きない
@@ -96,7 +103,26 @@ export function PropertyBlock({ images, dark = false }: PropertyBlockProps) {
         {/* Reveal 自身は動かさず、中のサムネイルを40msずつずらして順に出す */}
         {images.length > 1 && (
           <Reveal plain>
-            <div className={styles.thumbs}>
+            <div className={styles.meta}>
+              <span>
+                {index !== undefined && total !== undefined
+                  ? `Property ${String(index).padStart(2, "0")} / ${String(total).padStart(2, "0")}`
+                  : "Property"}
+              </span>
+              <span className={styles.counter}>
+                {String(active + 1).padStart(2, "0")}
+                <span className={styles.counterTotal}>
+                  {" / "}
+                  {String(images.length).padStart(2, "0")}
+                </span>
+              </span>
+            </div>
+
+            <div
+              className={styles.thumbs}
+              // 枚数が少ないときにサムネイルが大きくなりすぎないよう頭を抑える
+              style={{ maxWidth: images.length * THUMB_MAX + (images.length - 1) * THUMB_GAP }}
+            >
               {images.map((image, i) => (
                 <span
                   key={image.src}
