@@ -68,8 +68,38 @@ export async function POST(request: Request) {
     message || "（未記入）",
   ].filter((line) => line !== "")
 
+  const replyLines = [
+    `${company ? `${company}\n` : ""}${name} 様`,
+    "",
+    "この度は物件撮影のご依頼をいただき、ありがとうございます。",
+    "以下の内容で承りました。",
+    "",
+    "─────────────────",
+    `所在地: ${location}`,
+    `撮影希望日・時期: ${preferredDate}`,
+    `納品希望日: ${deliveryDate || "（指定なし）"}`,
+    "",
+    "基本プラン: 20カット・横画角 ¥20,000",
+    `ルームツアー動画: ${roomTour || "なし"}`,
+    `オプション: ${addOns.length > 0 ? addOns.join(" / ") : "なし"}`,
+    estimate !== undefined ? `概算: ¥${estimate.toLocaleString("ja-JP")}（税別・交通費別）` : "",
+    "",
+    "ご要望・補足:",
+    message || "（未記入）",
+    "─────────────────",
+    "",
+    "上記は概算です。24時間以内に、正式なお見積もりと撮影可能な日程をあらためてご連絡いたします。",
+    "このメールに返信いただければ、そのまま担当者に届きます。",
+    "",
+    "Artemis",
+    "info@designartemis.space",
+    "https://designartemis.space",
+  ].filter((line) => line !== "")
+
   try {
     const resend = new Resend(apiKey)
+
+    // 依頼者への自動返信が失敗しても、こちらへの通知だけは必ず残るよう順に送る
     const { error } = await resend.emails.send({
       from: fromEmail,
       to: toEmail,
@@ -81,6 +111,20 @@ export async function POST(request: Request) {
     if (error) {
       console.error("Resend error", error)
       return NextResponse.json({ error: "メール送信に失敗しました" }, { status: 502 })
+    }
+
+    try {
+      const auto = await resend.emails.send({
+        from: fromEmail,
+        to: email,
+        replyTo: toEmail,
+        subject: "【Artemis】物件撮影のご依頼を承りました",
+        text: replyLines.join("\n"),
+      })
+      if (auto.error) console.error("Auto-reply failed", auto.error)
+    } catch (autoErr) {
+      // 自動返信の失敗で依頼そのものを失わせない
+      console.error("Auto-reply threw", autoErr)
     }
 
     return NextResponse.json({ ok: true })
