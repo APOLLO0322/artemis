@@ -97,6 +97,25 @@ export async function POST(request: Request) {
     "https://designartemis.space",
   ].filter((line) => line !== "")
 
+  // 見積書は両方のメールに付けるので先に作る。
+  // 生成に失敗しても、依頼の通知だけは必ず届くようにする。
+  let quote: string | undefined
+  try {
+    const pdf = await renderPhotoQuote({
+      clientName: company || name,
+      location,
+      roomTour,
+      addOns,
+      hasRetouch: addOns.some((item) => item.includes("特殊編集")),
+    })
+    quote = Buffer.from(pdf).toString("base64")
+  } catch (pdfErr) {
+    console.error("Quote PDF failed", pdfErr)
+  }
+
+  /** ファイル名に使えない文字を落とす */
+  const safe = (value: string) => value.replace(/[\\/:*?"<>|]/g, "").trim() || "お客様"
+
   try {
     const resend = new Resend(apiKey)
 
@@ -107,6 +126,10 @@ export async function POST(request: Request) {
       replyTo: email,
       subject: `【物件撮影 依頼】${company || name} 様／${location}`,
       text: lines.join("\n"),
+      // 控えとして手元にも残す。後から探しやすいよう宛先名をファイル名にする
+      attachments: quote
+        ? [{ filename: `仮見積書_${safe(company || name)}.pdf`, content: quote }]
+        : undefined,
     })
 
     if (error) {
@@ -115,30 +138,17 @@ export async function POST(request: Request) {
     }
 
     try {
-      const pdf = await renderPhotoQuote({
-        clientName: company || name,
-        location,
-        roomTour,
-        addOns,
-        hasRetouch: addOns.some((item) => item.includes("特殊編集")),
-      })
-
       const auto = await resend.emails.send({
         from: fromEmail,
         to: email,
         replyTo: toEmail,
         subject: "【Artemis】物件撮影のご依頼を承りました",
         text: replyLines.join("\n"),
-        attachments: [
-          {
-            filename: `仮見積書_Artemis.pdf`,
-            content: Buffer.from(pdf).toString("base64"),
-          },
-        ],
+        attachments: quote ? [{ filename: "仮見積書_Artemis.pdf", content: quote }] : undefined,
       })
       if (auto.error) console.error("Auto-reply failed", auto.error)
     } catch (autoErr) {
-      // 自動返信やPDF生成の失敗で依頼そのものを失わせない
+      // 自動返信の失敗で依頼そのものを失わせない
       console.error("Auto-reply threw", autoErr)
     }
 
