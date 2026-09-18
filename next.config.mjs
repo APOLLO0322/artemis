@@ -6,6 +6,10 @@ const nextConfig = {
     formats: ["image/avif", "image/webp"],
     qualities: [75, 85],
   },
+  // PDF生成で読むフォントとロゴは動的に読み込むため、明示的に同梱する
+  outputFileTracingIncludes: {
+    "/api/photo-request": ["./assets/fonts/**", "./public/logo/**"],
+  },
 }
 
 export default nextConfig

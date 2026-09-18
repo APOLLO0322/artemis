@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import { Resend } from "resend"
+import { renderPhotoQuote } from "@/lib/photoQuote"
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -114,16 +115,30 @@ export async function POST(request: Request) {
     }
 
     try {
+      const pdf = await renderPhotoQuote({
+        clientName: company || name,
+        location,
+        roomTour,
+        addOns,
+        hasRetouch: addOns.some((item) => item.includes("特殊編集")),
+      })
+
       const auto = await resend.emails.send({
         from: fromEmail,
         to: email,
         replyTo: toEmail,
         subject: "【Artemis】物件撮影のご依頼を承りました",
         text: replyLines.join("\n"),
+        attachments: [
+          {
+            filename: `仮見積書_Artemis.pdf`,
+            content: Buffer.from(pdf).toString("base64"),
+          },
+        ],
       })
       if (auto.error) console.error("Auto-reply failed", auto.error)
     } catch (autoErr) {
-      // 自動返信の失敗で依頼そのものを失わせない
+      // 自動返信やPDF生成の失敗で依頼そのものを失わせない
       console.error("Auto-reply threw", autoErr)
     }
 

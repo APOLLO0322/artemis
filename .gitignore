@@ -12,3 +12,5 @@ yarn-debug.log*
 yarn-error.log*
 .vercel
 next-env.d.ts
+
+# PDF生成用フォントは assets/fonts に置く（サイズが大きいので追跡対象を限定）
