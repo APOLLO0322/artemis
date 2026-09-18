@@ -40,11 +40,15 @@ const basePlan = {
   items: ["横画角のみ（納品枚数の追加は応相談）", "撮影日から3日で納品"],
 }
 
-/** 出張費の目安。撮影地までの片道距離で見る */
+/**
+ * 出張費の目安。松山市内は距離によらず無料、市外は片道距離で見る。
+ * 市内と距離区分が重ならないよう、行の書き分けで区別している。
+ */
 const travelFees = [
-  { range: "〜20km", price: "2,000" },
-  { range: "〜50km", price: "4,000" },
-  { range: "〜80km", price: "8,000" },
+  { area: "松山市内", price: "無料" },
+  { area: "市外", detail: "片道 〜20km", price: "¥2,000" },
+  { area: "市外", detail: "片道 〜50km", price: "¥4,000" },
+  { area: "市外", detail: "片道 〜80km", price: "¥8,000" },
 ]
 
 /** オプション。料金表と申し込みフォームで同じ内容を使う */
@@ -160,12 +164,12 @@ export default function ArchitecturePage() {
             <div className={styles.optionsHead}>Travel</div>
             <dl className={styles.options}>
               {travelFees.map((fee) => (
-                <div key={fee.range} className={styles.optionRow}>
+                <div key={`${fee.area}${fee.detail ?? ""}`} className={styles.optionRow}>
                   <dt className={styles.optionName}>
-                    出張費
-                    <span className={styles.optionDetail}>片道 {fee.range}</span>
+                    {fee.area}
+                    {fee.detail && <span className={styles.optionDetail}>{fee.detail}</span>}
                   </dt>
-                  <dd className={styles.optionPrice}>¥{fee.price}</dd>
+                  <dd className={styles.optionPrice}>{fee.price}</dd>
                 </div>
               ))}
             </dl>
