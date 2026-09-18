@@ -194,6 +194,12 @@
   margin: calc(var(--space-8) * 1.1) 0 var(--space-4);
 }
 
+/* 日本語の見出しは斜体にすると読みにくいので立てる */
+.optionsHeadJa {
+  font-style: normal;
+  letter-spacing: 0.06em;
+}
+
 .options {
   margin: 0;
   max-width: 760px;

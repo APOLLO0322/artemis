@@ -67,8 +67,9 @@
 
 @media (max-width: 720px) {
   .cta {
-    padding: 18px 12px;
-    font-size: 12px;
+    padding: 14px 7px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
     gap: var(--space-2);
   }
 }

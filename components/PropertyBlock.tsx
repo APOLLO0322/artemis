@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useState, type CSSProperties } from "react"
 import type { SizedImage } from "@/lib/siteImages"
 import { Reveal } from "./Reveal"
 import styles from "./PropertyBlock.module.css"
@@ -120,8 +120,13 @@ export function PropertyBlock({ images, dark = false, index, total }: PropertyBl
 
             <div
               className={styles.thumbs}
-              // 枚数が少ないときにサムネイルが大きくなりすぎないよう頭を抑える
-              style={{ maxWidth: images.length * THUMB_MAX + (images.length - 1) * THUMB_GAP }}
+              // 枚数が少ないときにサムネイルが大きくなりすぎないよう頭を抑える。
+              // 画面幅で上書きできるよう、直接指定ではなく変数で渡す。
+              style={
+                {
+                  "--thumbs-max": `${images.length * THUMB_MAX + (images.length - 1) * THUMB_GAP}px`,
+                } as CSSProperties
+              }
             >
               {images.map((image, i) => (
                 <span

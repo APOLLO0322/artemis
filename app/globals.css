@@ -223,6 +223,8 @@ button {
 }
 
 .input {
+  width: 100%;
+  min-width: 0;
   font-family: var(--font-body);
   font-size: 15px;
   padding: 13px var(--space-3);

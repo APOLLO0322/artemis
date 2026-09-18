@@ -68,13 +68,14 @@
   color: var(--color-neutral-500);
 }
 
-/* サムネイル。枚数が増えても必ず1行に収める */
+/* サムネイル。PCでは枚数が増えても1行に収める */
 .thumbs {
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: minmax(0, 1fr);
   gap: 10px;
   margin: var(--space-3) auto 0;
+  max-width: var(--thumbs-max, 100%);
 }
 
 /*
@@ -188,10 +189,9 @@
   }
 }
 
-/* スマホは暫定（PCビュー優先で調整中） */
 @media (max-width: 860px) {
   .block {
-    padding: calc(var(--space-8) * 1.1) 0;
+    padding: clamp(28px, 5vh, 56px) 0;
   }
 
   .inner {
@@ -199,16 +199,27 @@
   }
 
   .stage {
-    min-height: 56vh;
+    min-height: 46vh;
   }
 
   .stageImage {
-    max-height: 56vh;
+    max-height: 46vh;
   }
 
+  /* スマホでは1行に詰め込むと豆粒になるので、折り返して大きさを保つ */
   .thumbs {
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-2);
+    grid-auto-flow: row;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 6px;
+    margin-top: var(--space-3);
+    max-width: 100%;
+  }
+
+  .meta {
     margin-top: var(--space-4);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    /* 右端の追随タブと枚数表示が重ならないよう逃がす */
+    padding-right: 34px;
   }
 }
