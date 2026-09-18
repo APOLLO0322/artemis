@@ -8,10 +8,28 @@ import { Reveal } from "@/components/Reveal"
 import { imageIfExists, listImageFolders } from "@/lib/siteImages"
 import styles from "./page.module.css"
 
+const TITLE = "物件撮影 — Artemis"
+const DESCRIPTION =
+  "住宅・店舗・オフィスの竣工写真、内観・外観・ディテール撮影。建築とデザインの意図が伝わる一枚に。"
+
 export const metadata = {
-  title: "物件撮影 — Artemis",
-  description:
-    "住宅・店舗・オフィスの竣工写真、内観・外観・ディテール撮影。建築とデザインの意図が伝わる一枚に。",
+  title: TITLE,
+  description: DESCRIPTION,
+  openGraph: {
+    type: "website",
+    locale: "ja_JP",
+    url: "https://designartemis.space/architecture",
+    siteName: "Artemis",
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [{ url: "/og/artemis.jpg", width: 1200, height: 630, alt: "Artemisが撮影した住宅の室内" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+    images: ["/og/artemis.jpg"],
+  },
 }
 
 /** 基本プラン */
