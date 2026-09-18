@@ -6,7 +6,9 @@
   position: fixed;
   right: 0;
   top: 50%;
-  transform: translate(0, -50%);
+  /* 画面内での縦位置。狭い画面では下に寄せて写真を隠さないようにする */
+  --cta-shift: -50%;
+  transform: translate(0, var(--cta-shift));
   z-index: 20;
 
   display: inline-flex;
@@ -27,7 +29,7 @@
   box-shadow: 0 10px 30px rgba(30, 29, 26, 0.18), inset 0 0 0 1px rgba(255, 255, 255, 0.28);
 
   opacity: 0;
-  transform: translate(14px, -50%);
+  transform: translate(14px, var(--cta-shift));
   pointer-events: none;
   transition: opacity 0.5s cubic-bezier(0.22, 0.61, 0.36, 1),
     transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1), background-color 0.2s ease;
@@ -35,7 +37,7 @@
 
 .ctaVisible {
   opacity: 1;
-  transform: translate(0, -50%);
+  transform: translate(0, var(--cta-shift));
   pointer-events: auto;
 }
 
@@ -61,12 +63,16 @@
 @media (prefers-reduced-motion: reduce) {
   .cta {
     transition: none;
-    transform: translate(0, -50%);
+    transform: translate(0, var(--cta-shift));
   }
 }
 
 @media (max-width: 720px) {
   .cta {
+    /* 写真の前に被らないよう、画面の下寄りに置く */
+    top: auto;
+    bottom: 8vh;
+    --cta-shift: 0;
     padding: 14px 7px;
     font-size: 11px;
     letter-spacing: 0.08em;

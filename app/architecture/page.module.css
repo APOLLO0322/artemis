@@ -339,8 +339,68 @@
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 640px) {
   .gallery {
     grid-template-columns: 1fr;
+  }
+
+  /* 料金まわりはPCの寸法のままだと大きすぎるので、一段落とす */
+  .pricingTitle {
+    font-size: 24px;
+  }
+
+  .basePrice {
+    font-size: 32px;
+  }
+
+  .baseUnit {
+    font-size: 15px;
+  }
+
+  .baseTax {
+    font-size: 12px;
+    margin-left: var(--space-2);
+  }
+
+  .baseItems li {
+    font-size: 15px;
+  }
+
+  .optionsHead {
+    font-size: 13px;
+  }
+
+  .optionName {
+    font-size: 15px;
+  }
+
+  /* 項目名の横に置くと行が詰まるので、狭い画面では下に落とす */
+  .optionDetail {
+    display: block;
+    margin-left: 0;
+    margin-top: 2px;
+    font-size: 12px;
+  }
+
+  .optionPrice {
+    font-size: 19px;
+  }
+
+  .optionUnit {
+    font-size: 11px;
+  }
+
+  .optionNote,
+  .travelNote,
+  .pricingNote {
+    font-size: 13px;
+  }
+
+  .requestLead {
+    font-size: 15px;
+  }
+
+  .retouchLabel {
+    font-size: 13px;
   }
 }
