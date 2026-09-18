@@ -57,7 +57,7 @@ export async function renderPhotoQuote(input: PhotoQuoteInput, now = new Date())
     provisional: true,
     notes: [
       "※ 本書はご依頼内容にもとづく仮のお見積りです。正式なお見積りは別途ご連絡いたします。",
-      "※ 撮影場所までの交通費は含まれておりません。",
+      "※ 出張費は含まれておりません。目安：片道〜20km 2,000円／〜50km 4,000円／〜80km 8,000円（応相談）",
     ],
   })
 }

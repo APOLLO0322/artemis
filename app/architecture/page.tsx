@@ -40,6 +40,13 @@ const basePlan = {
   items: ["横画角のみ（納品枚数の追加は応相談）", "撮影日から3日で納品"],
 }
 
+/** 出張費の目安。撮影地までの片道距離で見る */
+const travelFees = [
+  { range: "〜20km", price: "2,000" },
+  { range: "〜50km", price: "4,000" },
+  { range: "〜80km", price: "8,000" },
+]
+
 /** オプション。料金表と申し込みフォームで同じ内容を使う */
 const options = [
   { name: "SNS用 縦画角写真", detail: "10カット", price: "8,000" },
@@ -149,6 +156,22 @@ export default function ArchitecturePage() {
                 </div>
               ))}
             </dl>
+
+            <div className={styles.optionsHead}>Travel</div>
+            <dl className={styles.options}>
+              {travelFees.map((fee) => (
+                <div key={fee.range} className={styles.optionRow}>
+                  <dt className={styles.optionName}>
+                    出張費
+                    <span className={styles.optionDetail}>片道 {fee.range}</span>
+                  </dt>
+                  <dd className={styles.optionPrice}>¥{fee.price}</dd>
+                </div>
+              ))}
+            </dl>
+            <p className={styles.travelNote}>
+              上記は目安です。80kmを超える場合、離島、宿泊をともなう場合は応相談。有料道路・駐車場代は実費を申し受けます。
+            </p>
 
             {retouchBefore && retouchAfter && (
               <div className={styles.retouch}>

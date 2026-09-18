@@ -249,6 +249,15 @@
   color: var(--color-neutral-600);
 }
 
+.travelNote {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--color-neutral-600);
+  max-width: 68ch;
+  margin-top: var(--space-4);
+}
+
 /* ---------- 特殊編集の作例 ---------- */
 
 .retouch {
