@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Noto_Sans_JP } from "next/font/google"
+import { ViewPing } from "@/components/ViewPing"
 import "./globals.css"
 
 const notoSansJP = Noto_Sans_JP({
@@ -47,7 +48,10 @@ export default function RootLayout({
           <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
         </noscript>
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <ViewPing />
+      </body>
     </html>
   )
 }
