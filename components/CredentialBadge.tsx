@@ -9,7 +9,13 @@ const LABELS: Record<string, string> = {
 }
 
 function labelOf(src: string) {
-  const key = src.split("/").pop()?.replace(/\.\w+$/, "") ?? ""
+  const key =
+    src
+      .split("/")
+      .pop()
+      ?.replace(/\.\w+$/, "")
+      // 並び順を決めるための先頭の番号は名称に含めない
+      .replace(/^\d+-/, "") ?? ""
   return LABELS[key] ?? key.replace(/-/g, " ")
 }
 

@@ -76,6 +76,7 @@ export default function PartnerPage() {
         <div className={styles.credentials}>
           <CredentialBadge />
           <div className={styles.tagRow}>
+            <span className="tag tag-accent">Notion公式コンサルティングパートナー</span>
             <span className="tag tag-accent">Notion Certified Admin</span>
             <span className="tag tag-outline">巡回監査士補 取得予定</span>
           </div>
