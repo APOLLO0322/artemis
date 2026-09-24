@@ -1,20 +1,33 @@
 import Image from "next/image"
-import { imageIfExists } from "@/lib/siteImages"
+import { listImages } from "@/lib/siteImages"
 import styles from "./CredentialBadge.module.css"
 
-const BADGE_PATH = "badges/notion-certified-admin.png"
+/** ファイル名から読み上げ用の名称を起こす */
+const LABELS: Record<string, string> = {
+  "notion-certified-admin": "Notion Certified Admin",
+  "notion-consulting-partner": "Notion Consulting Partner",
+}
+
+function labelOf(src: string) {
+  const key = src.split("/").pop()?.replace(/\.\w+$/, "") ?? ""
+  return LABELS[key] ?? key.replace(/-/g, " ")
+}
 
 /**
- * Notion Certified Admin badge. Renders nothing until the image file is
- * added, so the Credentials section stays tidy in the meantime.
+ * 認定バッジ。`public/badges/` に置いた画像をファイル名順に並べる。
+ * 増えたら画像を足すだけでよく、コードは触らなくてよい。
  */
 export function CredentialBadge() {
-  const src = imageIfExists(BADGE_PATH)
-  if (!src) return null
+  const badges = listImages("badges")
+  if (badges.length === 0) return null
 
   return (
-    <div className={styles.badge}>
-      <Image src={src} alt="Notion Certified Admin" fill sizes="112px" className={styles.badgeImage} />
+    <div className={styles.badges}>
+      {badges.map((src) => (
+        <div key={src} className={styles.badge}>
+          <Image src={src} alt={labelOf(src)} fill sizes="112px" className={styles.badgeImage} />
+        </div>
+      ))}
     </div>
   )
 }
